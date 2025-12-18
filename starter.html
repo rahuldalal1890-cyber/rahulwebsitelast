@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Memory Game – Kelly Template</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Template CSS -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <!-- Template CSS -->
+  <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!-- ================= CUSTOM CSS ================= -->
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* ===== CENTER NAV ===== */
+    .header .container-fluid {
+      display: flex;
+      align-items: center;
+    }
+
+    .header .logo {
+      flex: 1;
+    }
+
+    #navmenu {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .header-social-links {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* ===== MEMORY GAME BACKGROUND ===== */
+    #memory-game {
+      padding: 120px 0;
+      background: linear-gradient(135deg, #f857a6, #5b86e5);
+    }
+
+    .memory-wrapper {
+      max-width: 600px;
+      background: #e0e0e0;
+      border-radius: 30px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .card {
+      aspect-ratio: 1 / 1;
+      background: #2d2d2d;
+      color: white;
+      font-size: 2rem;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card.revealed {
+      background: #4CAF50;
+    }
+
+    .card.matched {
+      background: #2196F3;
+      cursor: default;
+    }
+
+    .win-message {
+      display: none;
+      margin-top: 20px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #4CAF50;
+    }
+  </style>
+</head>
+
+<body class="about-page">
+
+<!-- ===== HEADER ===== -->
+<header id="header" class="header d-flex align-items-center light-background sticky-top">
+  <div class="container-fluid position-relative d-flex align-items-center">
+
+    <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <h1 class="sitename">Rahul</h1>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+
+        <li class="dropdown">
+          <a href="#"><span>Dropdown</span>
+            <i class="bi bi-chevron-down toggle-dropdown"></i>
+          </a>
+          <ul>
+            <li><a href="#">Dropdown 1</a></li>
+            <li class="dropdown">
+              <a href="#"><span>Deep Dropdown</span>
+                <i class="bi bi-chevron-down toggle-dropdown"></i>
+              </a>
+              <ul>
+                <li><a href="#">Deep 1</a></li>
+                <li><a href="#">Deep 2</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Dropdown 2</a></li>
+          </ul>
+        </li>
+
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+    <div class="header-social-links ms-auto">
+      <a href="#"><i class="bi bi-twitter-x"></i></a>
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-linkedin"></i></a>
+    </div>
+
+  </div>
+</header>
+
+<!-- ===== MAIN ===== -->
+<main class="main">
+
+<section id="memory-game">
+  <div class="container d-flex justify-content-center">
+    <div class="memory-wrapper">
+
+      <h2>🧠 Emoji Memory Match</h2>
+      <p>Score: <span id="score">0</span></p>
+
+      <div id="gameBoard" class="game-board"></div>
+
+      <p id="winMessage" class="win-message">
+        🎉 You matched them all! 🎉
+      </p>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer" class="footer light-background">
+  <div class="container text-center">
+    <p>© <strong>RAHUL</strong> — All Rights Reserved</p>
+  </div>
+</footer>
+
+<!-- Vendor JS -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- ===== MEMORY GAME JS ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const board = document.getElementById("gameBoard");
+  const scoreEl = document.getElementById("score");
+  const winMsg = document.getElementById("winMessage");
+
+  const emojis = ['🍎','🍌','🍇','🍒','🍉','🍍'];
+  const cards = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+
+  let first = null;
+  let lock = false;
+  let score = 0;
+  let matches = 0;
+
+  cards.forEach(e => {
+    const c = document.createElement("div");
+    c.className = "card";
+    c.dataset.e = e;
+    c.onclick = () => flip(c);
+    board.appendChild(c);
+  });
+
+  function flip(card) {
+    if (lock || card.classList.contains("matched") || card === first) return;
+
+    card.classList.add("revealed");
+    card.textContent = card.dataset.e;
+
+    if (!first) {
+      first = card;
+      return;
+    }
+
+    lock = true;
+
+    if (first.dataset.e === card.dataset.e) {
+      first.classList.add("matched");
+      card.classList.add("matched");
+      score++;
+      matches++;
+      scoreEl.textContent = score;
+      reset();
+      if (matches === emojis.length) winMsg.style.display = "block";
+    } else {
+      setTimeout(() => {
+        first.textContent = "";
+        card.textContent = "";
+        first.classList.remove("revealed");
+        card.classList.remove("revealed");
+        reset();
+      }, 800);
+    }
+  }
+
+  function reset() {
+    first = null;
+    lock = false;
+  }
+});
+</script>
+
+</body>
+</html>
