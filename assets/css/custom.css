@@ -367,4 +367,15 @@ section {
   color: #fff;
   cursor: default;
 }
+/* ===============================
+   🔥 MEMORY GAME – FINAL GRID FIX
+   =============================== */
+
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(4, 80px); /* DEFAULT = EASY MODE */
+  gap: 12px;
+  justify-content: center;
+  margin: 20px auto;
+}
 
