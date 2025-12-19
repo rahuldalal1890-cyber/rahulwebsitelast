@@ -31,7 +31,7 @@
   <!-- Main CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- Custom CSS (linked LAST – lab requirement) -->
+  <!-- Custom CSS (LAB 3 & 4 – linked last) -->
   <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 
@@ -71,23 +71,16 @@
   <main class="main">
 
     <!-- ======= Hero Section ======= -->
-    <!-- Background image comes from custom.css -->
     <section id="hero" class="hero section d-flex align-items-center">
-
-      <div class="container text-center" data-aos="zoom-out" data-aos-delay="100">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <h2>Rahul Dalal</h2>
-            <p>Student at Vilnius Technical University</p>
-            <a href="about.html" class="btn-get-started">About Me</a>
-          </div>
-        </div>
+      <div class="container text-center">
+        <h2>Rahul Dalal</h2>
+        <p>Student at Vilnius Technical University</p>
+        <a href="about.html" class="btn-get-started">About Me</a>
       </div>
-
     </section>
     <!-- End Hero Section -->
 
-    <!-- ======= Table Section (Lab 2 requirement) ======= -->
+    <!-- ======= Table Section (Lab 2) ======= -->
     <section class="section">
       <div class="container">
 
@@ -120,6 +113,45 @@
     </section>
     <!-- End Table Section -->
 
+    <!-- ======= Memory Game Section (LAB 6) ======= -->
+    <section id="memory-game" class="section">
+      <div class="container text-center">
+
+        <h2 class="mb-4">Memory Game</h2>
+
+        <!-- Difficulty -->
+        <div class="mb-3">
+          <label for="difficulty" class="form-label fw-bold">Difficulty</label>
+          <select id="difficulty" class="form-select w-25 mx-auto">
+            <option value="easy">Easy (4 × 3)</option>
+            <option value="hard">Hard (6 × 4)</option>
+          </select>
+        </div>
+
+        <!-- Controls -->
+        <div class="mb-3">
+          <button id="startGame" class="btn btn-primary me-2">Start</button>
+          <button id="restartGame" class="btn btn-secondary">Restart</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="mb-3">
+          <p><strong>Moves:</strong> <span id="moves">0</span></p>
+          <p><strong>Matches:</strong> <span id="matches">0</span></p>
+        </div>
+
+        <!-- Game Board -->
+        <div id="gameBoard" class="game-board mx-auto"></div>
+
+        <!-- Win Message -->
+        <p id="winMessage" class="win-message mt-3">
+          🎉 Congratulations! You won!
+        </p>
+
+      </div>
+    </section>
+    <!-- ======= End Memory Game Section ======= -->
+
   </main>
 
   <!-- ======= Footer ======= -->
@@ -141,8 +173,11 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 
-  <!-- Main JS File -->
+  <!-- Main JS -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Custom JS (Lab 5 + 6) -->
+  <script src="assets/js/custom.js"></script>
 
 </body>
 </html>
