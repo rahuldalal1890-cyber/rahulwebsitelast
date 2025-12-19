@@ -4,9 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Services - Kelly Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+
+  <title>Services - Rahul Dalal</title>
+  <meta name="description" content="Services page for laboratory work">
+  <meta name="keywords" content="services, html, css, media">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -24,22 +25,19 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
- 
-
-  <!-- Template Main CSS -->
+  <!-- Main CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
-</head>
-
+  <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 
 <body class="services-page">
 
-  <!-- Header -->
+  <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center light-background sticky-top">
     <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <h1 class="sitename">Kelly</h1>
+        <h1 class="sitename">RAHUL</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -49,10 +47,12 @@
           <li><a href="resume.html">Resume</a></li>
           <li><a href="services.html" class="active">Services</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <li class="dropdown">
+            <a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <li class="dropdown">
+                <a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                   <li><a href="#">Deep Dropdown 1</a></li>
                   <li><a href="#">Deep Dropdown 2</a></li>
@@ -72,76 +72,68 @@
       </nav>
 
       <div class="header-social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="#"><i class="bi bi-twitter-x"></i></a>
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
       </div>
 
     </div>
   </header>
   <!-- End Header -->
 
-  <!-- Main -->
+  <!-- ======= Main ======= -->
   <main class="main">
 
-    <div class="container mt-5">
+    <section class="section">
+      <div class="container text-center">
 
-<!-- YouTube Video -->
-<div class="media-box">
-  <h3>YouTube Video – Habibi</h3>
+        <!-- YouTube Video -->
+        <div class="media-box mb-5">
+          <h3>YouTube Video – Habibi</h3>
+          <a href="https://www.youtube.com/watch?v=wzN4pApVUoo" target="_blank">
+            <img src="https://img.youtube.com/vi/wzN4pApVUoo/maxresdefault.jpg"
+                 width="560"
+                 alt="Habibi YouTube Video Thumbnail">
+          </a>
+          <p>Click image to watch on YouTube.</p>
+        </div>
 
-  <a href="https://www.youtube.com/watch?v=wzN4pApVUoo" target="_blank">
-    <img 
-      src="https://img.youtube.com/vi/wzN4pApVUoo/maxresdefault.jpg"
-      width="560"
-      alt="Habibi YouTube Video Thumbnail">
-  </a>
+        <!-- Local Video -->
+        <div class="media-box mb-5">
+          <h3>Local Video – Rahul</h3>
+          <video width="560" height="315" controls>
+            <source src="assets/VandA/raj.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
 
-  <p>Click image to watch on YouTube.</p>
-</div>
+        <!-- Audio -->
+        <div class="media-box mb-5">
+          <h3>Audio – Habibi MP3</h3>
+          <audio controls>
+            <source src="assets/VandA/Habibi.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
 
+      </div>
+    </section>
 
-  <br><br>
+    <!-- Custom Animation Section -->
+    <section id="raj-breath-animation" class="section text-center">
+      <h2>Custom Animation Area</h2>
+      <p>This section is added as a creative / optional lab element.</p>
+    </section>
 
-  <!-- Local Video File -->
-  <div class="media-box">
-    <h3>Video – Rahul</h3>
-    <video width="560" height="315" controls>
-      <source src="assets/VandA/raj.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
-  <br><br>
-
-  <!-- Local Audio File -->
-  <div class="media-box">
-    <h3>Audio – Habibi MP3</h3>
-    <audio controls>
-      <source src="assets/VandA/Habibi.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
-</div>
-
-<div id="raj-breath-animation">
-  <main>
-    <article>
-      <h1 split-by="letter" letter-animation="breath"></h1>
-      <h2></h2>
-    </article>
   </main>
-</div>
-
   <!-- End Main -->
 
-  <!-- Footer -->
+  <!-- ======= Footer ======= -->
   <footer id="footer" class="footer light-background">
     <div class="container">
       <div class="copyright text-center">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Kelly</strong> <span>All Rights Reserved<br></span></p>
+        <p>© 2025 <strong class="px-1 sitename">Rahul Dalal</strong> All Rights Reserved</p>
       </div>
       <div class="social-links d-flex justify-content-center">
         <a href="#"><i class="bi bi-twitter-x"></i></a>
@@ -150,7 +142,7 @@
         <a href="#"><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="credits">
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed using Kelly Template
       </div>
     </div>
   </footer>
@@ -159,10 +151,11 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
     <i class="bi bi-arrow-up-short"></i>
   </a>
-<div id="raj-preloader">
-  <div class="loader"></div>
-</div>
->
+
+  <!-- Preloader -->
+  <div id="raj-preloader">
+    <div class="loader"></div>
+  </div>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -175,9 +168,8 @@
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-  <!-- Main JS File -->
+  <!-- Main JS -->
   <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>
