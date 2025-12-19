@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =====================================================
      LAB 5 – CONTACT FORM (SAFE, UNCHANGED)
   ====================================================== */
-  const form = document.getElementById("raj-contact-form");
+  const form = document.getElementById("rahul-contact-form");
   if (form) {
 
     const resultsBox = document.getElementById("form-results");
@@ -33,28 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
       if (small) small.textContent = "";
     }
 
-    function validateName() {
-      const v = nameInput.value.trim();
-      if (!/^[A-Za-z]+$/.test(v)) return showError(nameInput, "Letters only"), false;
-      clearError(nameInput); return true;
-    }
-
-    function validateSurname() {
-      const v = surnameInput.value.trim();
-      if (!/^[A-Za-z]+$/.test(v)) return showError(surnameInput, "Letters only"), false;
-      clearError(surnameInput); return true;
-    }
-
-    function validateEmail() {
-      const v = emailInput.value.trim();
-      if (!/^\S+@\S+\.\S+$/.test(v)) return showError(emailInput, "Invalid email"), false;
-      clearError(emailInput); return true;
-    }
-
-    function validateAddress() {
-      if (addressInput.value.trim().length < 5)
-        return showError(addressInput, "Address too short"), false;
-      clearError(addressInput); return true;
+    function validate(input, regex, msg) {
+      if (!regex.test(input.value.trim())) {
+        showError(input, msg);
+        return false;
+      }
+      clearError(input);
+      return true;
     }
 
     function validatePhone() {
@@ -66,109 +51,91 @@ document.addEventListener("DOMContentLoaded", () => {
         "+370 6" + digits.slice(0, 2) +
         (digits.length > 2 ? " " + digits.slice(2) : "");
 
-      if (digits.length !== 8)
-        return showError(phoneInput, "Format: +370 6xx xxxxx"), false;
-
-      clearError(phoneInput); return true;
-    }
-
-    function validateRating(input) {
-      const v = Number(input.value);
-      if (isNaN(v) || v < 0 || v > 10)
-        return showError(input, "0–10 only"), false;
-      clearError(input); return true;
+      if (digits.length !== 8) {
+        showError(phoneInput, "Format: +370 6xx xxxxx");
+        return false;
+      }
+      clearError(phoneInput);
+      return true;
     }
 
     function checkForm() {
       const ok =
-        validateName() &&
-        validateSurname() &&
-        validateEmail() &&
+        validate(nameInput, /^[A-Za-z]+$/, "Letters only") &&
+        validate(surnameInput, /^[A-Za-z]+$/, "Letters only") &&
+        validate(emailInput, /^\S+@\S+\.\S+$/, "Invalid email") &&
         validatePhone() &&
-        validateAddress() &&
-        validateRating(rating1) &&
-        validateRating(rating2) &&
-        validateRating(rating3);
+        addressInput.value.trim().length >= 5 &&
+        [rating1, rating2, rating3].every(r => r.value >= 0 && r.value <= 10);
 
       submitBtn.disabled = !ok;
       return ok;
     }
 
-    [
-      nameInput, surnameInput, emailInput,
-      phoneInput, addressInput,
-      rating1, rating2, rating3
-    ].forEach(el => el.addEventListener("input", checkForm));
+    [nameInput, surnameInput, emailInput, phoneInput, addressInput, rating1, rating2, rating3]
+      .forEach(el => el.addEventListener("input", checkForm));
 
     form.addEventListener("submit", e => {
       e.preventDefault();
       if (!checkForm()) return;
 
-      const avg =
-        (Number(rating1.value) +
-         Number(rating2.value) +
-         Number(rating3.value)) / 3;
-
+      const avg = ((+rating1.value + +rating2.value + +rating3.value) / 3).toFixed(1);
       const color = avg < 4 ? "red" : avg < 7 ? "orange" : "green";
 
       resultsBox.innerHTML = `
-        <p>Name: ${nameInput.value}</p>
-        <p>Surname: ${surnameInput.value}</p>
-        <p>Email: ${emailInput.value}</p>
-        <p>Phone: ${phoneInput.value}</p>
-        <p>Address: ${addressInput.value}</p>
-        <hr>
-        <p style="font-weight:bold;color:${color}">
-          ${nameInput.value} ${surnameInput.value}: ${avg.toFixed(1)}
-        </p>
+        <p><b>${nameInput.value} ${surnameInput.value}</b></p>
+        <p>Average: <span style="color:${color}">${avg}</span></p>
       `;
     });
   }
 
   /* =====================================================
-     LAB 6 – MEMORY GAME (FINAL + OPTIONAL TIMER)
+     LAB 6 – MEMORY GAME + OPTIONAL TIMER (FINAL)
   ====================================================== */
   const board = document.getElementById("gameBoard");
   if (!board) return;
 
   const movesEl = document.getElementById("moves");
   const matchesEl = document.getElementById("matches");
+  const timeEl = document.getElementById("time");
   const winMsg = document.getElementById("winMessage");
   const startBtn = document.getElementById("startGame");
   const restartBtn = document.getElementById("restartGame");
-  const difficultySelect = document.getElementById("difficulty");
-  const timeEl = document.getElementById("time");
+  const difficulty = document.getElementById("difficulty");
 
   const emojis = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍑','🍓','🍊','🍋','🥭'];
 
   let firstCard = null;
-  let lockBoard = false;
+  let lock = false;
   let moves = 0;
   let matches = 0;
   let totalPairs = 0;
 
-  /* TIMER (OPTIONAL TASK) */
-  let timer = null;
+  /* TIMER */
   let seconds = 0;
+  let timerInterval = null;
 
   function startTimer() {
-    clearInterval(timer);
+    stopTimer();
     seconds = 0;
     timeEl.textContent = "0";
-    timer = setInterval(() => {
+    timerInterval = setInterval(() => {
       seconds++;
       timeEl.textContent = seconds;
     }, 1000);
   }
 
   function stopTimer() {
-    clearInterval(timer);
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
   }
 
   function setupGame() {
     board.innerHTML = "";
     firstCard = null;
-    lockBoard = false;
+    lock = false;
     moves = 0;
     matches = 0;
 
@@ -176,28 +143,27 @@ document.addEventListener("DOMContentLoaded", () => {
     matchesEl.textContent = "0";
     winMsg.style.display = "none";
 
-    const hard = difficultySelect.value === "hard";
+    const hard = difficulty.value === "hard";
     totalPairs = hard ? 12 : 6;
 
-    board.style.gridTemplateColumns =
-      hard ? "repeat(6, 1fr)" : "repeat(4, 1fr)";
+    board.style.gridTemplateColumns = hard ? "repeat(6,1fr)" : "repeat(4,1fr)";
 
     const selected = emojis.slice(0, totalPairs);
-    const cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
+    const deck = [...selected, ...selected].sort(() => Math.random() - 0.5);
 
-    cards.forEach(emoji => {
+    deck.forEach(e => {
       const card = document.createElement("div");
       card.className = "card";
-      card.dataset.emoji = emoji;
-      card.addEventListener("click", () => flipCard(card));
+      card.dataset.emoji = e;
+      card.addEventListener("click", () => flip(card));
       board.appendChild(card);
     });
 
     startTimer();
   }
 
-  function flipCard(card) {
-    if (lockBoard || card === firstCard || card.classList.contains("matched")) return;
+  function flip(card) {
+    if (lock || card === firstCard || card.classList.contains("matched")) return;
 
     card.textContent = card.dataset.emoji;
     card.classList.add("revealed");
@@ -209,18 +175,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     moves++;
     movesEl.textContent = moves;
-    lockBoard = true;
+    lock = true;
 
     if (firstCard.dataset.emoji === card.dataset.emoji) {
       firstCard.classList.add("matched");
       card.classList.add("matched");
       matches++;
       matchesEl.textContent = matches;
-      resetTurn();
+      reset();
 
       if (matches === totalPairs) {
         winMsg.style.display = "block";
-        stopTimer();
+        stopTimer(); // ✅ STOP TIMER ON WIN
       }
     } else {
       setTimeout(() => {
@@ -228,18 +194,18 @@ document.addEventListener("DOMContentLoaded", () => {
         card.textContent = "";
         firstCard.classList.remove("revealed");
         card.classList.remove("revealed");
-        resetTurn();
+        reset();
       }, 800);
     }
   }
 
-  function resetTurn() {
+  function reset() {
     firstCard = null;
-    lockBoard = false;
+    lock = false;
   }
 
   startBtn.addEventListener("click", setupGame);
   restartBtn.addEventListener("click", setupGame);
-  difficultySelect.addEventListener("change", setupGame);
+  difficulty.addEventListener("change", setupGame);
 
 });
