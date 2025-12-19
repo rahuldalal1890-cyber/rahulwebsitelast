@@ -325,4 +325,46 @@ section {
 .watch button:hover {
   background: #e6e6e6;
 }
+/* =====================================================
+   🔥 MEMORY GAME – FINAL ID FIX (NO LAB AFFECTED)
+===================================================== */
+
+/* JS uses #gameBoard, so CSS must match */
+#gameBoard {
+  display: grid;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px auto;
+  width: max-content;
+}
+
+/* Card reset (Bootstrap conflict fix) */
+#gameBoard .card {
+  all: unset;               /* VERY IMPORTANT */
+  width: 80px;
+  height: 80px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  font-size: 32px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Revealed card */
+#gameBoard .card.revealed {
+  background: #ffffff;
+  transform: scale(1.05);
+}
+
+/* Matched card */
+#gameBoard .card.matched {
+  background: #34b7a7;
+  color: #fff;
+  cursor: default;
+}
 
