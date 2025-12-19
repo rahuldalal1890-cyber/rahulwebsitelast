@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
-     LAB 5 – CONTACT FORM (FINAL FIX – COLORS + DATA)
+     LAB 5 – CONTACT FORM (FINAL + FIXED)
   ====================================================== */
   const form = document.getElementById("raj-contact-form");
   if (form) {
@@ -38,9 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return true;
     }
 
+    function validateNotEmpty(input) {
+      if (input.value.trim() === "") {
+        showError(input);
+        return false;
+      }
+      clearError(input);
+      return true;
+    }
+
     function validateRating(input) {
       const v = Number(input.value);
-      if (isNaN(v) || v < 0 || v > 10) {
+      if (isNaN(v) || v < 1 || v > 10) {
         showError(input);
         return false;
       }
@@ -53,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
         validate(nameInput, /^[A-Za-z]+$/) &&
         validate(surnameInput, /^[A-Za-z]+$/) &&
         validate(emailInput, /^\S+@\S+\.\S+$/) &&
+        validateNotEmpty(phoneInput) &&
+        validateNotEmpty(addressInput) &&
         validateRating(rating1) &&
         validateRating(rating2) &&
         validateRating(rating3);
@@ -251,4 +262,3 @@ document.addEventListener("DOMContentLoaded", () => {
   difficulty.addEventListener("change", setupGame);
 
 });
-
