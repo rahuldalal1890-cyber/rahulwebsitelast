@@ -1,118 +1,191 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
-     LAB 5 – CONTACT FORM (FINAL, SIMPLE & WORKING)
+     LAB 5 – CONTACT FORM (SAVE + COLOR – WORKING)
   ====================================================== */
+  const contactForm = document.getElementById("rahul-contact-form");
+  if (contactForm) {
 
-  const form = document.getElementById("rahul-contact-form");
-  if (!form) return;   // agar contact page nahi hai to kuch mat karo
+    const resultBox = document.getElementById("form-results");
+    const submitBtn = contactForm.querySelector("button[type='submit']");
 
-  const resultBox = document.getElementById("form-results");
-  const submitBtn = form.querySelector("button[type='submit']");
+    const name = document.getElementById("name");
+    const surname = document.getElementById("surname");
+    const email = document.getElementById("email");
+    const phone = document.getElementById("phone");
+    const address = document.getElementById("address");
+    const r1 = document.getElementById("rating1");
+    const r2 = document.getElementById("rating2");
+    const r3 = document.getElementById("rating3");
 
-  const nameInput = document.getElementById("name");
-  const surnameInput = document.getElementById("surname");
-  const emailInput = document.getElementById("email");
-  const phoneInput = document.getElementById("phone");
-  const addressInput = document.getElementById("address");
-
-  const rating1 = document.getElementById("rating1");
-  const rating2 = document.getElementById("rating2");
-  const rating3 = document.getElementById("rating3");
-
-  submitBtn.disabled = true;
-
-  /* ===== VALIDATION HELPERS ===== */
-  function invalid(el) {
-    el.classList.remove("is-valid");
-    el.classList.add("is-invalid");
-  }
-
-  function valid(el) {
-    el.classList.remove("is-invalid");
-    el.classList.add("is-valid");
-  }
-
-  function checkText(el) {
-    if (el.value.trim().length < 2) {
-      invalid(el);
-      return false;
-    }
-    valid(el);
-    return true;
-  }
-
-  function checkEmail(el) {
-    const ok = /^\S+@\S+\.\S+$/.test(el.value.trim());
-    ok ? valid(el) : invalid(el);
-    return ok;
-  }
-
-  function checkRating(el) {
-    const v = Number(el.value);
-    if (v < 1 || v > 10) {
-      invalid(el);
-      return false;
-    }
-    valid(el);
-    return true;
-  }
-
-  /* ===== FORM CHECK ===== */
-  function checkForm() {
-    const ok =
-      checkText(nameInput) &&
-      checkText(surnameInput) &&
-      checkEmail(emailInput) &&
-      checkText(phoneInput) &&
-      checkText(addressInput) &&
-      checkRating(rating1) &&
-      checkRating(rating2) &&
-      checkRating(rating3);
-
-    submitBtn.disabled = !ok;
-    return ok;
-  }
-
-  [
-    nameInput,
-    surnameInput,
-    emailInput,
-    phoneInput,
-    addressInput,
-    rating1,
-    rating2,
-    rating3
-  ].forEach(el => el.addEventListener("input", checkForm));
-
-  /* ===== SAVE DATA ===== */
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const data = {
-      name: nameInput.value,
-      surname: surnameInput.value,
-      email: emailInput.value,
-      phone: phoneInput.value,
-      address: addressInput.value,
-      rating1: rating1.value,
-      rating2: rating2.value,
-      rating3: rating3.value,
-      savedAt: new Date().toLocaleString()
-    };
-
-    // ✅ SAVE TO LOCAL STORAGE
-    localStorage.setItem("rahul_contact_data", JSON.stringify(data));
-
-    resultBox.innerHTML = "✅ Form saved successfully!";
-    resultBox.style.color = "green";
-
-    form.reset();
     submitBtn.disabled = true;
 
-    // remove green/red after reset
-    document.querySelectorAll(".is-valid, .is-invalid")
-      .forEach(el => el.classList.remove("is-valid", "is-invalid"));
-  });
+    function valid(el, ok) {
+      el.classList.toggle("is-valid", ok);
+      el.classList.toggle("is-invalid", !ok);
+    }
+
+    function check() {
+      const ok =
+        name.value.length > 1 &&
+        surname.value.length > 1 &&
+        /^\S+@\S+\.\S+$/.test(email.value) &&
+        phone.value.length > 5 &&
+        address.value.length > 3 &&
+        r1.value >= 1 && r1.value <= 10 &&
+        r2.value >= 1 && r2.value <= 10 &&
+        r3.value >= 1 && r3.value <= 10;
+
+      valid(name, name.value.length > 1);
+      valid(surname, surname.value.length > 1);
+      valid(email, /^\S+@\S+\.\S+$/.test(email.value));
+      valid(phone, phone.value.length > 5);
+      valid(address, address.value.length > 3);
+      valid(r1, r1.value >= 1 && r1.value <= 10);
+      valid(r2, r2.value >= 1 && r2.value <= 10);
+      valid(r3, r3.value >= 1 && r3.value <= 10);
+
+      submitBtn.disabled = !ok;
+      return ok;
+    }
+
+    [name, surname, email, phone, address, r1, r2, r3]
+      .forEach(el => el.addEventListener("input", check));
+
+    contactForm.addEventListener("submit", e => {
+      e.preventDefault();
+      if (!check()) return;
+
+      localStorage.setItem("rahul_contact_data", JSON.stringify({
+        name: name.value,
+        surname: surname.value,
+        email: email.value,
+        phone: phone.value,
+        address: address.value,
+        rating1: r1.value,
+        rating2: r2.value,
+        rating3: r3.value
+      }));
+
+      resultBox.innerHTML = "✅ Data saved successfully";
+      resultBox.style.color = "green";
+
+      contactForm.reset();
+      submitBtn.disabled = true;
+      document.querySelectorAll(".is-valid,.is-invalid")
+        .forEach(el => el.classList.remove("is-valid","is-invalid"));
+    });
+  }
+
+  /* =====================================================
+     SMART WATCH – CLOCK + BUTTONS (SAFE)
+  ====================================================== */
+  const timeEl = document.getElementById("time");
+  if (timeEl) {
+
+    const dateEl = document.getElementById("date");
+    const heart = document.getElementById("heart");
+    const stepsEl = document.getElementById("steps");
+    const batteryEl = document.getElementById("battery");
+
+    let steps = 3500, battery = 85;
+
+    function updateTime() {
+      const d = new Date();
+      timeEl.textContent =
+        String(d.getHours()).padStart(2,"0") + ":" +
+        String(d.getMinutes()).padStart(2,"0");
+      dateEl.textContent = d.toDateString();
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+    setInterval(() => heart.textContent = 60 + Math.floor(Math.random()*20), 2000);
+
+    window.walk = () => {
+      steps += 100;
+      stepsEl.textContent = steps;
+      if (battery > 0) battery--;
+      batteryEl.textContent = battery + "%";
+    };
+
+    window.resetWatch = () => {
+      steps = 3500; battery = 85;
+      stepsEl.textContent = steps;
+      batteryEl.textContent = battery + "%";
+    };
+  }
+
+  /* =====================================================
+     LAB 6 – MEMORY GAME + TIMER (WORKING)
+  ====================================================== */
+  const board = document.getElementById("gameBoard");
+  if (board) {
+
+    const movesEl = document.getElementById("moves");
+    const matchesEl = document.getElementById("matches");
+    const timeEl = document.getElementById("gameTime");
+    const winMsg = document.getElementById("winMessage");
+    const startBtn = document.getElementById("startGame");
+    const restartBtn = document.getElementById("restartGame");
+
+    const emojis = ['🍎','🍌','🍇','🍒','🍉','🍍'];
+    let first = null, lock = false, moves = 0, matches = 0;
+    let seconds = 0, timer = null;
+
+    function startTimer() {
+      clearInterval(timer);
+      seconds = 0;
+      timeEl.textContent = "0";
+      timer = setInterval(() => timeEl.textContent = ++seconds, 1000);
+    }
+
+    function setup() {
+      board.innerHTML = "";
+      first = null; lock = false;
+      moves = matches = 0;
+      movesEl.textContent = matchesEl.textContent = "0";
+      winMsg.style.display = "none";
+
+      startTimer();
+
+      [...emojis, ...emojis].sort(() => Math.random() - 0.5)
+        .forEach(e => {
+          const c = document.createElement("div");
+          c.className = "card";
+          c.onclick = () => flip(c, e);
+          board.appendChild(c);
+        });
+    }
+
+    function flip(card, val) {
+      if (lock || card === first) return;
+      card.textContent = val;
+
+      if (!first) { first = card; return; }
+
+      movesEl.textContent = ++moves;
+      lock = true;
+
+      if (first.textContent === card.textContent) {
+        matchesEl.textContent = ++matches;
+        first = null; lock = false;
+
+        if (matches === emojis.length) {
+          clearInterval(timer);
+          winMsg.style.display = "block";
+        }
+      } else {
+        setTimeout(() => {
+          card.textContent = "";
+          first.textContent = "";
+          first = null; lock = false;
+        }, 700);
+      }
+    }
+
+    startBtn.onclick = setup;
+    restartBtn.onclick = setup;
+  }
 
 });
