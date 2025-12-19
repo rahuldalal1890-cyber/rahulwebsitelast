@@ -1,109 +1,109 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
-     LAB 5 – CONTACT FORM (FINAL + FIXED)
+     LAB 5 – CONTACT FORM (FINAL SAVE FIX)
   ====================================================== */
-  const form = document.getElementById("raj-contact-form");
-  if (form) {
 
-    const resultsBox = document.getElementById("form-results");
-    const submitBtn = form.querySelector("button[type='submit']");
+  const form = document.getElementById("rahul-contact-form");
+  if (!form) return;
 
-    const nameInput = document.getElementById("name");
-    const surnameInput = document.getElementById("surname");
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    const addressInput = document.getElementById("address");
+  const resultsBox = document.getElementById("form-results");
+  const submitBtn = form.querySelector("button[type='submit']");
 
-    const rating1 = document.getElementById("rating1");
-    const rating2 = document.getElementById("rating2");
-    const rating3 = document.getElementById("rating3");
+  const nameInput = document.getElementById("name");
+  const surnameInput = document.getElementById("surname");
+  const emailInput = document.getElementById("email");
+  const phoneInput = document.getElementById("phone");
+  const addressInput = document.getElementById("address");
 
-    submitBtn.disabled = true;
+  const rating1 = document.getElementById("rating1");
+  const rating2 = document.getElementById("rating2");
+  const rating3 = document.getElementById("rating3");
 
-    function showError(input) {
-      input.classList.add("is-invalid");
-    }
+  submitBtn.disabled = true;
 
-    function clearError(input) {
-      input.classList.remove("is-invalid");
-    }
-
-    function validate(input, regex) {
-      if (!regex.test(input.value.trim())) {
-        showError(input);
-        return false;
-      }
-      clearError(input);
-      return true;
-    }
-
-    function validateNotEmpty(input) {
-      if (input.value.trim() === "") {
-        showError(input);
-        return false;
-      }
-      clearError(input);
-      return true;
-    }
-
-    function validateRating(input) {
-      const v = Number(input.value);
-      if (isNaN(v) || v < 1 || v > 10) {
-        showError(input);
-        return false;
-      }
-      clearError(input);
-      return true;
-    }
-
-    function checkForm() {
-      const ok =
-        validate(nameInput, /^[A-Za-z]+$/) &&
-        validate(surnameInput, /^[A-Za-z]+$/) &&
-        validate(emailInput, /^\S+@\S+\.\S+$/) &&
-        validateNotEmpty(phoneInput) &&
-        validateNotEmpty(addressInput) &&
-        validateRating(rating1) &&
-        validateRating(rating2) &&
-        validateRating(rating3);
-
-      submitBtn.disabled = !ok;
-      return ok;
-    }
-
-    [
-      nameInput, surnameInput, emailInput,
-      phoneInput, addressInput,
-      rating1, rating2, rating3
-    ].forEach(el => el.addEventListener("input", checkForm));
-
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      if (!checkForm()) return;
-
-      const avg =
-        (Number(rating1.value) +
-         Number(rating2.value) +
-         Number(rating3.value)) / 3;
-
-      let color = "green";
-      if (avg < 4) color = "red";
-      else if (avg < 7) color = "orange";
-
-      resultsBox.innerHTML = `
-        <p><b>Name:</b> ${nameInput.value} ${surnameInput.value}</p>
-        <p><b>Email:</b> ${emailInput.value}</p>
-        <p><b>Phone:</b> ${phoneInput.value}</p>
-        <p><b>Address:</b> ${addressInput.value}</p>
-        <hr>
-        <p style="font-weight:bold;color:${color}">
-          Average Rating: ${avg.toFixed(1)}
-        </p>
-      `;
-    });
+  function invalid(input) {
+    input.classList.add("is-invalid");
   }
 
+  function valid(input) {
+    input.classList.remove("is-invalid");
+    input.classList.add("is-valid");
+  }
+
+  function validateText(input) {
+    if (input.value.trim().length < 2) {
+      invalid(input);
+      return false;
+    }
+    valid(input);
+    return true;
+  }
+
+  function validateEmail(input) {
+    const ok = /^\S+@\S+\.\S+$/.test(input.value.trim());
+    ok ? valid(input) : invalid(input);
+    return ok;
+  }
+
+  function validateNumber(input) {
+    const val = Number(input.value);
+    if (val < 1 || val > 10) {
+      invalid(input);
+      return false;
+    }
+    valid(input);
+    return true;
+  }
+
+  function checkForm() {
+    const ok =
+      validateText(nameInput) &&
+      validateText(surnameInput) &&
+      validateEmail(emailInput) &&
+      validateText(phoneInput) &&
+      validateText(addressInput) &&
+      validateNumber(rating1) &&
+      validateNumber(rating2) &&
+      validateNumber(rating3);
+
+    submitBtn.disabled = !ok;
+    return ok;
+  }
+
+  [
+    nameInput, surnameInput, emailInput,
+    phoneInput, addressInput,
+    rating1, rating2, rating3
+  ].forEach(el => el.addEventListener("input", checkForm));
+
+  /* ===== SAVE DATA ===== */
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const data = {
+      name: nameInput.value,
+      surname: surnameInput.value,
+      email: emailInput.value,
+      phone: phoneInput.value,
+      address: addressInput.value,
+      rating1: rating1.value,
+      rating2: rating2.value,
+      rating3: rating3.value,
+      time: new Date().toLocaleString()
+    };
+
+    // 🔥 ACTUAL SAVE
+    localStorage.setItem("rahul_contact_data", JSON.stringify(data));
+
+    resultsBox.innerHTML =
+      "✅ Form saved successfully (localStorage)";
+
+    form.reset();
+    submitBtn.disabled = true;
+  });
+
+});
   /* =====================================================
      SMART WATCH – SAFE & WORKING (UNCHANGED)
   ====================================================== */
@@ -262,3 +262,4 @@ document.addEventListener("DOMContentLoaded", () => {
   difficulty.addEventListener("change", setupGame);
 
 });
+
