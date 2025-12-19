@@ -1,108 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Smart Watch</title>
+  <meta charset="UTF-8">
+  <title>Smart Watch</title>
 
-<style>
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-/* ===== BACKGROUND ===== */
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #43cea2, #185a9d);
-}
-
-/* ===== WATCH BODY ===== */
-.watch {
-  width: 260px;
-  height: 380px;
-  background: #111;
-  border-radius: 40px;
-  padding: 15px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-}
-
-/* ===== SCREEN ===== */
-.screen {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #00c6ff, #0072ff);
-  border-radius: 30px;
-  color: #fff;
-  text-align: center;
-  padding: 15px 10px;
-}
-
-/* ===== TITLE ===== */
-.title {
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  margin-bottom: 8px;
-}
-
-/* ===== TIME & DATE ===== */
-.time {
-  font-size: 46px;
-  font-weight: bold;
-}
-
-.date {
-  font-size: 13px;
-  margin-bottom: 15px;
-}
-
-/* ===== STATS ===== */
-.stats {
-  display: flex;
-  justify-content: space-around;
-  margin: 18px 0;
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-}
-
-.stat small {
-  font-size: 12px;
-  opacity: 0.9;
-}
-
-/* ===== BUTTONS ===== */
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-button {
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  background: #fff;
-  color: #0072ff;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-button:hover {
-  background: #e6e6e6;
-}
-</style>
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
 <body>
@@ -142,57 +45,7 @@ button:hover {
   </div>
 </div>
 
-<script>
-/* ===== ELEMENTS ===== */
-const timeEl = document.getElementById("time");
-const dateEl = document.getElementById("date");
-const heartEl = document.getElementById("heart");
-const stepsEl = document.getElementById("steps");
-const batteryEl = document.getElementById("battery");
-
-/* ===== DEFAULT VALUES ===== */
-let steps = 3500;
-let battery = 85;
-
-/* ===== TIME & DATE ===== */
-function updateTime() {
-  const now = new Date();
-  let h = now.getHours();
-  let m = now.getMinutes();
-
-  h = h < 10 ? "0" + h : h;
-  m = m < 10 ? "0" + m : m;
-
-  timeEl.textContent = h + ":" + m;
-  dateEl.textContent = now.toDateString();
-}
-setInterval(updateTime, 1000);
-updateTime();
-
-/* ===== HEART RATE ===== */
-setInterval(() => {
-  heartEl.textContent = Math.floor(Math.random() * 20) + 60;
-}, 2000);
-
-/* ===== WALK BUTTON ===== */
-function walk() {
-  steps += Math.floor(Math.random() * 200);
-  stepsEl.textContent = steps;
-
-  if (battery > 0) {
-    battery--;
-    batteryEl.textContent = battery + "%";
-  }
-}
-
-/* ===== RESET BUTTON ===== */
-function resetWatch() {
-  steps = 3500;
-  battery = 85;
-  stepsEl.textContent = steps;
-  batteryEl.textContent = battery + "%";
-}
-</script>
-
+<!-- JS -->
+<script src="assets/js/custom.js"></script>
 </body>
 </html>
