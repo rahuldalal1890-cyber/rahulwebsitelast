@@ -1,11 +1,11 @@
 /* ============================================================
    CUSTOM STYLING – STUDENT WORK
-   Author: Rahul
-   Assignment-compliant custom CSS
+   Author: Rahul Dalal
+   Labs: 2 + 3 (SAFE, DEFENDABLE)
    ============================================================ */
 
 /* ============================================================
-   1. TYPOGRAPHY SYSTEM
+   1. TYPOGRAPHY SYSTEM  (LAB 2)
    ============================================================ */
 
 h1, h2, h3 {
@@ -29,10 +29,9 @@ p {
 }
 
 /* ============================================================
-   2. INTERACTIVE ELEMENTS
+   2. INTERACTIVE ELEMENTS  (LAB 2)
    ============================================================ */
 
-/* Links */
 a {
   color: #0066ff;
   font-weight: 500;
@@ -49,10 +48,10 @@ a:active {
   color: #002f7a;
 }
 
-/* Buttons */
 .btn,
 button,
-input[type="submit"] {
+input[type="submit"],
+.btn-get-started {
   background: #0066ff;
   color: #fff;
   padding: 10px 26px;
@@ -63,7 +62,8 @@ input[type="submit"] {
 }
 
 .btn:hover,
-button:hover {
+button:hover,
+.btn-get-started:hover {
   background: #0054d6;
   box-shadow: 0 6px 18px rgba(0, 90, 255, 0.25);
 }
@@ -73,7 +73,7 @@ button:hover {
 }
 
 /* ============================================================
-   3. SPACING SCALE & SURFACES
+   3. SPACING SCALE & SURFACES  (LAB 2)
    ============================================================ */
 
 :root {
@@ -86,14 +86,12 @@ section {
   padding: var(--space-lg) 0;
 }
 
-/* Minimum three sections */
 #about,
 #services,
 #contact {
   padding: var(--space-lg) 0;
 }
 
-/* Surface blocks */
 .surface {
   background: #ffffff;
   border-radius: 14px;
@@ -103,17 +101,16 @@ section {
 }
 
 /* ============================================================
-   4. TWO COMPONENTS RESTYLED
+   4. COMPONENTS RESTYLED  (LAB 2)
    ============================================================ */
 
-/* COMPONENT 1: NAVBAR */
+/* NAVBAR */
 .header {
   background: #ffffffee;
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 24px rgba(0,0,0,0.08);
 }
 
-/* Desktop nav layout */
 @media (min-width: 1200px) {
   .navmenu ul {
     list-style: none;
@@ -139,7 +136,7 @@ section {
   color: #0066ff;
 }
 
-/* COMPONENT 2: BACK TO TOP BUTTON */
+/* BACK TO TOP */
 .scroll-top {
   width: 48px;
   height: 48px;
@@ -153,7 +150,7 @@ section {
 }
 
 /* ============================================================
-   OPTIONAL: CUSTOM LIST STYLE
+   5. TABLE & LIST STYLING  (LAB 2)
    ============================================================ */
 
 ul.custom-list {
@@ -175,10 +172,6 @@ ul.custom-list li::before {
   color: #0066ff;
   font-size: 22px;
 }
-
-/* ============================================================
-   OPTIONAL: TABLE STYLING
-   ============================================================ */
 
 table {
   width: 100%;
@@ -210,87 +203,7 @@ td.numeric {
 }
 
 /* ============================================================
-   MEMORY GAME COMPONENT
-   Author: Rahul
-   ============================================================ */
-
-#memory-game {
-  padding: 80px 0;
-}
-
-.memory-wrapper {
-  max-width: 600px;
-  width: 100%;
-  background: #e0e0e0;
-  border-radius: 30px;
-  padding: 40px 30px;
-  text-align: center;
-  box-shadow:
-    10px 10px 30px #bebebe,
-    -10px -10px 30px #ffffff;
-}
-
-#memory-game h2 {
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-#memory-game p {
-  font-size: 1.2rem;
-  font-weight: 500;
-}
-
-.game-board {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin-top: 25px;
-}
-
-.card {
-  aspect-ratio: 1 / 1;
-  background-color: #2d2d2d;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  font-size: 2rem;
-  cursor: pointer;
-  user-select: none;
-  transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card.revealed {
-  background-color: #4CAF50;
-}
-
-.card.matched {
-  background-color: #2196F3;
-  cursor: default;
-}
-
-.win-message {
-  display: none;
-  margin-top: 20px;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #4CAF50;
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .card {
-    transition: none;
-  }
-}
-/* ============================================================
-   FIX: RESTORE HOME HERO BACKGROUND IMAGE
-   Author: Rahul
+   6. HERO SECTION – IMAGE FIX  (LAB 3)
    ============================================================ */
 
 .hero,
@@ -300,14 +213,91 @@ td.numeric {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
+  position: relative;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+}
 
-/* Text visibility on image */
-.hero h1,
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
 .hero h2,
 .hero p {
-  color: #111;
+  color: #ffffff;
 }
 
+/* ============================================================
+   7. LAB 3 – ANIMATION 1
+   ============================================================ */
 
+.hero h2,
+.hero p,
+.hero .btn-get-started {
+  animation: fadeUp 1.5s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   8. LAB 3 – ANIMATION 2
+   ============================================================ */
+
+.card,
+.surface,
+table tbody tr {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover,
+.surface:hover,
+table tbody tr:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+/* ============================================================
+   9. LAB 3 – CSS ONLY LOADER
+   ============================================================ */
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ddd;
+  border-top: 5px solid #0066ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 40px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   10. ACCESSIBILITY – REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
