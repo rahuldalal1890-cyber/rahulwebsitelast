@@ -4,48 +4,49 @@
   <meta charset="UTF-8">
   <title>Smart Watch</title>
 
-  <!-- CSS -->
+  <!-- Main + Custom CSS -->
   <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
-<body>
+<!-- ✅ IMPORTANT: class added -->
+<body class="smartwatch-page">
 
-<div class="watch">
-  <div class="screen">
+  <div class="watch">
+    <div class="screen">
 
-    <div class="title">SMART WATCH</div>
+      <div class="title">SMART WATCH</div>
 
-    <div class="time" id="time">00:00</div>
-    <div class="date" id="date">Loading...</div>
+      <div class="time" id="time">00:00</div>
+      <div class="date" id="date">Loading...</div>
 
-    <div class="stats">
-      <div class="stat">
-        ❤️
-        <span id="heart">72</span>
-        <small>bpm</small>
+      <div class="stats">
+        <div class="stat">
+          ❤️
+          <span id="heart">72</span>
+          <small>bpm</small>
+        </div>
+
+        <div class="stat">
+          👣
+          <span id="steps">3500</span>
+          <small>steps</small>
+        </div>
+
+        <div class="stat">
+          🔋
+          <span id="battery">85%</span>
+        </div>
       </div>
 
-      <div class="stat">
-        👣
-        <span id="steps">3500</span>
-        <small>steps</small>
+      <div class="buttons">
+        <button onclick="walk()">Walk</button>
+        <button onclick="resetWatch()">Reset</button>
       </div>
 
-      <div class="stat">
-        🔋
-        <span id="battery">85%</span>
-      </div>
     </div>
-
-    <div class="buttons">
-      <button onclick="walk()">Walk</button>
-      <button onclick="resetWatch()">Reset</button>
-    </div>
-
   </div>
-</div>
 
-<!-- JS -->
-<script src="assets/js/custom.js"></script>
+  <!-- JS -->
+  <script src="assets/js/custom.js"></script>
 </body>
 </html>
