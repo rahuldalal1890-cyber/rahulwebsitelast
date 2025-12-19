@@ -7,18 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Rahul Dalal – Portfolio</title>
-  <meta name="description" content="Personal portfolio website for laboratory work">
-  <meta name="keywords" content="portfolio, cv, html, bootstrap">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&family=Raleway:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
     rel="stylesheet">
 
   <!-- Vendor CSS -->
@@ -26,7 +23,7 @@
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-  <!-- Main + Custom CSS (LAB RULE: custom LAST) -->
+  <!-- Main + Custom CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
   <link href="assets/css/custom.css" rel="stylesheet">
 </head>
@@ -35,8 +32,7 @@
 
 <!-- ================= HEADER ================= -->
 <header id="header" class="header sticky-top">
-  <div class="container-fluid d-flex align-items-center justify-content-between">
-
+  <div class="container-fluid d-flex justify-content-between align-items-center">
     <a href="index.html" class="logo">
       <h1 class="sitename">RAHUL</h1>
     </a>
@@ -52,7 +48,6 @@
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
-
   </div>
 </header>
 
@@ -68,41 +63,17 @@
   </div>
 </section>
 
-<!-- ===== LAB 2 TABLE ===== -->
+<!-- ===== MEMORY GAME ===== -->
 <section class="section">
-  <div class="container">
-    <h2 class="text-center mb-4">My Course Scores</h2>
-
-    <table class="table table-bordered text-center">
-      <thead>
-        <tr>
-          <th>Course</th>
-          <th>Score</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Mathematics</td><td>95</td></tr>
-        <tr><td>Computer Science</td><td>90</td></tr>
-        <tr><td>Biology</td><td>92</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ===== LAB 6 MEMORY GAME (WITH OPTIONAL TIMER) ===== -->
-<section id="memory-game" class="section">
   <div class="container text-center">
 
     <h2 class="mb-4">Memory Game</h2>
 
     <!-- Difficulty -->
-    <div class="mb-3">
-      <label class="fw-bold">Difficulty</label>
-      <select id="difficulty" class="form-select w-25 mx-auto">
-        <option value="easy">Easy (4 × 3)</option>
-        <option value="hard">Hard (6 × 4)</option>
-      </select>
-    </div>
+    <select id="difficulty" class="form-select w-25 mx-auto mb-3">
+      <option value="easy">Easy (4×3)</option>
+      <option value="hard">Hard (6×4)</option>
+    </select>
 
     <!-- Controls -->
     <div class="mb-3">
@@ -111,17 +82,15 @@
     </div>
 
     <!-- Stats -->
-    <div class="mb-3">
-      <p><strong>Moves:</strong> <span id="moves">0</span></p>
-      <p><strong>Matches:</strong> <span id="matches">0</span></p>
-      <p><strong>Time:</strong> <span id="time">0</span> sec</p>
-    </div>
+    <p>Moves: <span id="moves">0</span></p>
+    <p>Matches: <span id="matches">0</span></p>
+    <p>Time: <span id="gameTime">0</span> sec</p>
 
-    <!-- Game Board -->
+    <!-- Board -->
     <div id="gameBoard" class="game-board mx-auto"></div>
 
-    <!-- Win Message -->
-    <p id="winMessage" class="win-message mt-3">
+    <!-- Win Message (HIDDEN BY DEFAULT) -->
+    <p id="winMessage" style="display:none; font-weight:bold;">
       🎉 Congratulations! You won!
     </p>
 
@@ -131,8 +100,8 @@
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer id="footer" class="footer text-center">
-  <p>© 2025 <strong>Rahul Dalal</strong>. All Rights Reserved</p>
+<footer class="footer text-center">
+  <p>© 2025 <strong>Rahul Dalal</strong></p>
 </footer>
 
 <!-- ================= JS ================= -->
