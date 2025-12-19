@@ -21,6 +21,8 @@
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Main + Custom CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -31,9 +33,9 @@
 
 <!-- ===== HEADER ===== -->
 <header id="header" class="header d-flex align-items-center light-background sticky-top">
-  <div class="container-fluid d-flex align-items-center justify-content-between">
+  <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
       <h1 class="sitename">RAHUL</h1>
     </a>
 
@@ -49,6 +51,13 @@
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
+
+    <div class="header-social-links">
+      <a href="#"><i class="bi bi-twitter-x"></i></a>
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-linkedin"></i></a>
+    </div>
 
   </div>
 </header>
@@ -105,7 +114,7 @@
           <p><em>Experion, India</em></p>
           <ul>
             <li>Analyzed computer hardware components and system performance</li>
-            <li>Conducted market and product analysis for business decisions</li>
+            <li>Conducted market and product analysis</li>
             <li>Prepared technical documentation and reports</li>
             <li>Collaborated with engineering and product teams</li>
           </ul>
@@ -125,12 +134,17 @@
   </div>
 </footer>
 
-<!-- ===== JS ===== -->
+<!-- ===== JS FILES (SAFE – NO custom.js) ===== -->
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-<!-- 🔥 MOST IMPORTANT LINE (FIX BLANK PAGE) -->
+<script src="assets/js/main.js"></script>
 <script>
   AOS.init();
 </script>
