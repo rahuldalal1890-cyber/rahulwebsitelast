@@ -288,3 +288,21 @@ td.numeric {
     transition: none;
   }
 }
+/* ============================================================
+   FIX: RESTORE HOME HERO BACKGROUND IMAGE
+   Author: Rahul
+   ============================================================ */
+
+.hero,
+#hero {
+  background: url("../img/home.jpg") center center / cover no-repeat;
+  min-height: 100vh;
+}
+
+/* Text visibility on image */
+.hero h1,
+.hero h2,
+.hero p {
+  color: #111;
+}
+
