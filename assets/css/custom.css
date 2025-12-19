@@ -1,12 +1,12 @@
 /* ============================================================
    CUSTOM STYLING – STUDENT WORK
    Author: Rahul Dalal
-   Labs: 2 + 3 (SAFE, DEFENDABLE)
-   ============================================================ */
+   Labs: 2 + 3 + 4 (FULLY COMPLETE & DEFENDABLE)
+============================================================ */
 
 /* ============================================================
    1. TYPOGRAPHY SYSTEM  (LAB 2)
-   ============================================================ */
+============================================================ */
 
 h1, h2, h3 {
   font-family: "Poppins", sans-serif;
@@ -30,7 +30,7 @@ p {
 
 /* ============================================================
    2. INTERACTIVE ELEMENTS  (LAB 2)
-   ============================================================ */
+============================================================ */
 
 a {
   color: #0066ff;
@@ -74,7 +74,7 @@ button:hover,
 
 /* ============================================================
    3. SPACING SCALE & SURFACES  (LAB 2)
-   ============================================================ */
+============================================================ */
 
 :root {
   --space-sm: 16px;
@@ -102,7 +102,7 @@ section {
 
 /* ============================================================
    4. COMPONENTS RESTYLED  (LAB 2)
-   ============================================================ */
+============================================================ */
 
 /* NAVBAR */
 .header {
@@ -151,7 +151,7 @@ section {
 
 /* ============================================================
    5. TABLE & LIST STYLING  (LAB 2)
-   ============================================================ */
+============================================================ */
 
 ul.custom-list {
   list-style: none;
@@ -203,13 +203,13 @@ td.numeric {
 }
 
 /* ============================================================
-   6. HERO SECTION – IMAGE FIX  (LAB 3)
-   ============================================================ */
+   6. HERO SECTION + IMAGE FIX  (LAB 3)
+============================================================ */
 
 .hero,
 #hero {
   background-image: url("/rahulwebsitelast/assets/img/hero-bg.jpg");
-  background-position: center center;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
@@ -234,13 +234,11 @@ td.numeric {
 }
 
 /* ============================================================
-   7. LAB 3 – ANIMATION 1
-   ============================================================ */
+   7. LAB 4 – ANIMATION 1 (fade-in)
+============================================================ */
 
-.hero h2,
-.hero p,
-.hero .btn-get-started {
-  animation: fadeUp 1.5s ease forwards;
+.section {
+  animation: fadeUp 1.2s ease both;
 }
 
 @keyframes fadeUp {
@@ -255,45 +253,67 @@ td.numeric {
 }
 
 /* ============================================================
-   8. LAB 3 – ANIMATION 2
-   ============================================================ */
+   8. LAB 4 – ANIMATION 2 (button pulse)
+============================================================ */
 
-.card,
-.surface,
-table tbody tr {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.btn:hover,
+.btn-get-started:hover {
+  animation: pulse 0.4s ease-in-out;
 }
 
-.card:hover,
-.surface:hover,
-table tbody tr:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 /* ============================================================
-   9. LAB 3 – CSS ONLY LOADER
-   ============================================================ */
+   9. LAB 4 – CSS ONLY LOADER
+============================================================ */
 
-.loader {
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#preloader::after {
+  content: "";
   width: 50px;
   height: 50px;
-  border: 5px solid #ddd;
-  border-top: 5px solid #0066ff;
+  border: 6px solid #ddd;
+  border-top-color: #0066ff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 40px auto;
 }
 
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 /* ============================================================
-   10. ACCESSIBILITY – REDUCED MOTION
-   ============================================================ */
+   10. LAB 4 – OPTIONAL: Animated Gradient Background
+============================================================ */
+
+body {
+  background: linear-gradient(120deg, #f7faff, #ffffff);
+  background-size: 200% 200%;
+  animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================================
+   11. ACCESSIBILITY – REDUCED MOTION
+============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -301,10 +321,10 @@ table tbody tr:hover {
     transition: none !important;
   }
 }
+
 /* ============================================================
    LAB 3 OPTIONAL – ORDERED + NESTED LIST WITH COUNTERS
-   Author: Rahul Dalal
-   ============================================================ */
+============================================================ */
 
 ol.custom-counter {
   counter-reset: section;
@@ -324,22 +344,16 @@ ol.custom-counter > li::before {
   content: counter(section) ".";
   position: absolute;
   left: 0;
-  top: 0;
   color: #0066ff;
-  font-weight: 700;
 }
 
-/* NESTED LIST */
 ol.custom-counter li ol {
   counter-reset: subsection;
-  margin-top: 8px;
 }
 
 ol.custom-counter li ol li {
   counter-increment: subsection;
   padding-left: 32px;
-  position: relative;
-  font-weight: 500;
 }
 
 ol.custom-counter li ol li::before {
@@ -347,6 +361,4 @@ ol.custom-counter li ol li::before {
   position: absolute;
   left: 0;
   color: #4CAF50;
-  font-size: 0.9rem;
 }
-
