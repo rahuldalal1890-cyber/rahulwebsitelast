@@ -17,14 +17,16 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&family=Raleway:wght@400;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 
-  <!-- Main + Custom CSS -->
+  <!-- Main + Custom CSS (custom last – LAB rule) -->
   <link href="assets/css/main.css" rel="stylesheet">
   <link href="assets/css/custom.css" rel="stylesheet">
 </head>
@@ -87,7 +89,7 @@
   </div>
 </section>
 
-<!-- ===== LAB 6 MEMORY GAME ===== -->
+<!-- ===== LAB 6 MEMORY GAME (WITH OPTIONAL TIMER) ===== -->
 <section id="memory-game" class="section">
   <div class="container text-center">
 
@@ -102,7 +104,7 @@
       </select>
     </div>
 
-    <!-- Buttons -->
+    <!-- Controls -->
     <div class="mb-3">
       <button id="startGame" class="btn btn-primary me-2">Start</button>
       <button id="restartGame" class="btn btn-secondary">Restart</button>
@@ -112,13 +114,17 @@
     <div class="mb-3">
       <p><strong>Moves:</strong> <span id="moves">0</span></p>
       <p><strong>Matches:</strong> <span id="matches">0</span></p>
+      <!-- OPTIONAL TIMER -->
+      <p><strong>Time:</strong> <span id="time">0</span> sec</p>
     </div>
 
-    <!-- Board -->
+    <!-- Game Board -->
     <div id="gameBoard" class="game-board mx-auto"></div>
 
-    <!-- Win -->
-    <p id="winMessage" class="win-message mt-3">🎉 Congratulations! You won!</p>
+    <!-- Win Message -->
+    <p id="winMessage" class="win-message mt-3">
+      🎉 Congratulations! You won!
+    </p>
 
   </div>
 </section>
