@@ -5,14 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ====================================================== */
   const form = document.getElementById("rahul-contact-form");
   if (form) {
-
     const resultsBox = document.getElementById("form-results");
     const submitBtn = form.querySelector("button[type='submit']");
 
     const nameInput = document.getElementById("name");
     const surnameInput = document.getElementById("surname");
     const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
 
     submitBtn.disabled = true;
 
@@ -35,8 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return ok;
     }
 
-    [nameInput, surnameInput, emailInput, phoneInput]
-      .forEach(el => el.addEventListener("input", checkForm));
+    [nameInput, surnameInput, emailInput].forEach(el =>
+      el.addEventListener("input", checkForm)
+    );
 
     form.addEventListener("submit", e => {
       e.preventDefault();
@@ -45,11 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-     SMART WATCH – UI PROJECT (SAFE)
+     SMART WATCH – SAFE & WORKING
   ====================================================== */
   const timeEl = document.getElementById("time");
   if (timeEl) {
-
     const dateEl = document.getElementById("date");
     const heartEl = document.getElementById("heart");
     const stepsEl = document.getElementById("steps");
@@ -91,91 +89,118 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-     LAB 6 – MEMORY GAME (FINAL & WORKING)
+     LAB 6 – MEMORY GAME + TIMER (FINAL FIX)
   ====================================================== */
   const board = document.getElementById("gameBoard");
-  if (board) {
+  if (!board) return;
 
-    const movesEl = document.getElementById("moves");
-    const matchesEl = document.getElementById("matches");
-    const winMsg = document.getElementById("winMessage");
-    const startBtn = document.getElementById("startGame");
-    const restartBtn = document.getElementById("restartGame");
-    const difficulty = document.getElementById("difficulty");
+  const movesEl = document.getElementById("moves");
+  const matchesEl = document.getElementById("matches");
+  const winMsg = document.getElementById("winMessage");
+  const startBtn = document.getElementById("startGame");
+  const restartBtn = document.getElementById("restartGame");
+  const difficulty = document.getElementById("difficulty");
+  const timeGameEl = document.getElementById("gameTime");
 
-    const emojis = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍑','🍓','🍊','🍋','🥭'];
+  const emojis = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍑','🍓','🍊','🍋','🥭'];
 
-    let firstCard = null;
-    let lock = false;
-    let moves = 0;
-    let matches = 0;
-    let totalPairs = 0;
+  let firstCard = null;
+  let lock = false;
+  let moves = 0;
+  let matches = 0;
+  let totalPairs = 0;
 
-    function setupGame() {
-      board.innerHTML = "";
-      firstCard = null;
-      lock = false;
-      moves = 0;
-      matches = 0;
+  /* ===== TIMER ===== */
+  let seconds = 0;
+  let timerInterval = null;
 
-      movesEl.textContent = "0";
-      matchesEl.textContent = "0";
-      winMsg.style.display = "none";
-
-      const hard = difficulty.value === "hard";
-      totalPairs = hard ? 12 : 6;
-      board.style.gridTemplateColumns = hard ? "repeat(6,1fr)" : "repeat(4,1fr)";
-
-      const deck = [...emojis.slice(0, totalPairs), ...emojis.slice(0, totalPairs)]
-        .sort(() => Math.random() - 0.5);
-
-      deck.forEach(e => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.dataset.emoji = e;
-        card.addEventListener("click", () => flip(card));
-        board.appendChild(card);
-      });
-    }
-
-    function flip(card) {
-      if (lock || card === firstCard || card.classList.contains("matched")) return;
-
-      card.textContent = card.dataset.emoji;
-
-      if (!firstCard) {
-        firstCard = card;
-        return;
-      }
-
-      moves++;
-      movesEl.textContent = moves;
-      lock = true;
-
-      if (firstCard.dataset.emoji === card.dataset.emoji) {
-        firstCard.classList.add("matched");
-        card.classList.add("matched");
-        matches++;
-        matchesEl.textContent = matches;
-        reset();
-        if (matches === totalPairs) winMsg.style.display = "block";
-      } else {
-        setTimeout(() => {
-          firstCard.textContent = "";
-          card.textContent = "";
-          reset();
-        }, 800);
-      }
-    }
-
-    function reset() {
-      firstCard = null;
-      lock = false;
-    }
-
-    startBtn.addEventListener("click", setupGame);
-    restartBtn.addEventListener("click", setupGame);
-    difficulty.addEventListener("change", setupGame);
+  function startTimer() {
+    stopTimer();
+    seconds = 0;
+    timeGameEl.textContent = "0";
+    timerInterval = setInterval(() => {
+      seconds++;
+      timeGameEl.textContent = seconds;
+    }, 1000);
   }
+
+  function stopTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function setupGame() {
+    board.innerHTML = "";
+    firstCard = null;
+    lock = false;
+    moves = 0;
+    matches = 0;
+
+    movesEl.textContent = "0";
+    matchesEl.textContent = "0";
+    winMsg.style.display = "none";
+
+    const hard = difficulty.value === "hard";
+    totalPairs = hard ? 12 : 6;
+    board.style.gridTemplateColumns = hard ? "repeat(6,1fr)" : "repeat(4,1fr)";
+
+    const deck = [...emojis.slice(0, totalPairs), ...emojis.slice(0, totalPairs)]
+      .sort(() => Math.random() - 0.5);
+
+    deck.forEach(e => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.emoji = e;
+      card.addEventListener("click", () => flip(card));
+      board.appendChild(card);
+    });
+
+    startTimer(); // ✅ TIMER START
+  }
+
+  function flip(card) {
+    if (lock || card === firstCard || card.classList.contains("matched")) return;
+
+    card.textContent = card.dataset.emoji;
+
+    if (!firstCard) {
+      firstCard = card;
+      return;
+    }
+
+    moves++;
+    movesEl.textContent = moves;
+    lock = true;
+
+    if (firstCard.dataset.emoji === card.dataset.emoji) {
+      firstCard.classList.add("matched");
+      card.classList.add("matched");
+      matches++;
+      matchesEl.textContent = matches;
+      reset();
+
+      if (matches === totalPairs) {
+        winMsg.style.display = "block";
+        stopTimer(); // ✅ TIMER STOP
+      }
+    } else {
+      setTimeout(() => {
+        firstCard.textContent = "";
+        card.textContent = "";
+        reset();
+      }, 800);
+    }
+  }
+
+  function reset() {
+    firstCard = null;
+    lock = false;
+  }
+
+  startBtn.addEventListener("click", setupGame);
+  restartBtn.addEventListener("click", setupGame);
+  difficulty.addEventListener("change", setupGame);
 
 });
