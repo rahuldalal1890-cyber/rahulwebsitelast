@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
-     LAB 5 – CONTACT FORM (UNCHANGED, SAFE)
+     LAB 5 – CONTACT FORM (SAFE, UNCHANGED)
   ====================================================== */
   const form = document.getElementById("raj-contact-form");
   if (form) {
@@ -62,8 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (digits.startsWith("370")) digits = digits.slice(3);
       digits = digits.slice(0, 8);
 
-      phoneInput.value = "+370 6" + digits.slice(0, 2) +
-        (digits.length > 2 ? " " + digits.slice(2) : "");
+      phoneInput.value =
+        "+370 6" + digits.slice(0, 2) + (digits.length > 2 ? " " + digits.slice(2) : "");
 
       if (digits.length !== 8)
         return showError(phoneInput, "Format: +370 6xx xxxxx"), false;
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-     LAB 6 – MEMORY GAME (FIXED, FULLY COMPLIANT)
+     LAB 6 – MEMORY GAME (FINAL FIXED VERSION)
   ====================================================== */
   const board = document.getElementById("gameBoard");
   if (!board) return;
@@ -143,46 +143,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const winMsg = document.getElementById("winMessage");
   const startBtn = document.getElementById("startGame");
   const restartBtn = document.getElementById("restartGame");
-  const difficulty = document.getElementById("difficulty");
+  const difficultySelect = document.getElementById("difficulty");
 
-  const allEmojis = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍑','🍓','🍊','🍋','🥭'];
+  const emojis = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍑','🍓','🍊','🍋','🥭'];
 
   let firstCard = null;
-  let lock = false;
+  let lockBoard = false;
   let moves = 0;
   let matches = 0;
-  let started = false;
+  let totalPairs = 0;
 
   function setupGame() {
     board.innerHTML = "";
-    winMsg.style.display = "none";
+    firstCard = null;
+    lockBoard = false;
     moves = 0;
     matches = 0;
-    firstCard = null;
-    lock = false;
 
     movesEl.textContent = "0";
     matchesEl.textContent = "0";
+    winMsg.style.display = "none";
 
-    let pairs = difficulty.value === "hard" ? 12 : 6;
-    let cols = difficulty.value === "hard" ? 6 : 4;
+    const isHard = difficultySelect.value === "hard";
+    totalPairs = isHard ? 12 : 6;
 
-    board.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    board.style.gridTemplateColumns =
+      isHard ? "repeat(6, 1fr)" : "repeat(4, 1fr)";
 
-    const deck = [...allEmojis.slice(0, pairs), ...allEmojis.slice(0, pairs)]
-      .sort(() => Math.random() - 0.5);
+    const selected = emojis.slice(0, totalPairs);
+    const cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
 
-    deck.forEach(e => {
+    cards.forEach(emoji => {
       const card = document.createElement("div");
       card.className = "card";
-      card.dataset.emoji = e;
-      card.onclick = () => flip(card);
+      card.dataset.emoji = emoji;
+      card.addEventListener("click", () => flipCard(card));
       board.appendChild(card);
     });
   }
 
-  function flip(card) {
-    if (!started || lock || card === firstCard || card.classList.contains("matched")) return;
+  function flipCard(card) {
+    if (lockBoard || card === firstCard || card.classList.contains("matched")) return;
 
     card.textContent = card.dataset.emoji;
     card.classList.add("revealed");
@@ -194,18 +195,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     moves++;
     movesEl.textContent = moves;
-    lock = true;
+    lockBoard = true;
 
     if (firstCard.dataset.emoji === card.dataset.emoji) {
       firstCard.classList.add("matched");
       card.classList.add("matched");
       matches++;
       matchesEl.textContent = matches;
-      reset();
+      resetTurn();
 
-      if (matches === board.children.length / 2) {
+      if (matches === totalPairs) {
         winMsg.style.display = "block";
-        started = false;
       }
     } else {
       setTimeout(() => {
@@ -213,17 +213,18 @@ document.addEventListener("DOMContentLoaded", () => {
         card.textContent = "";
         firstCard.classList.remove("revealed");
         card.classList.remove("revealed");
-        reset();
+        resetTurn();
       }, 800);
     }
   }
 
-  function reset() {
+  function resetTurn() {
     firstCard = null;
-    lock = false;
+    lockBoard = false;
   }
 
-  startBtn.onclick = () => { started = true; setupGame(); };
-  restartBtn.onclick = () => { started = true; setupGame(); };
+  startBtn.addEventListener("click", setupGame);
+  restartBtn.addEventListener("click", setupGame);
+  difficultySelect.addEventListener("change", setupGame);
 
 });
