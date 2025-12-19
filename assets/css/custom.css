@@ -295,9 +295,13 @@ td.numeric {
 
 .hero,
 #hero {
-  background: url("../img/home.jpg") center center / cover no-repeat;
+  background-image: url("/rahulwebsitelast/assets/img/hero-bg.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
 }
+
 
 /* Text visibility on image */
 .hero h1,
@@ -305,4 +309,5 @@ td.numeric {
 .hero p {
   color: #111;
 }
+
 
