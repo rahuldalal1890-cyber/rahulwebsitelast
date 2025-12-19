@@ -1,7 +1,7 @@
 /* ============================================================
    CUSTOM STYLING – STUDENT WORK
    Author: Rahul Dalal
-   Labs: 2 + 3 + 4 (FULLY COMPLETE & DEFENDABLE)
+   Labs: 2 + 3 + 4 + 6 (FULLY COMPLETE & DEFENDABLE)
 ============================================================ */
 
 /* ============================================================
@@ -44,13 +44,8 @@ a:hover {
   color: #004ecc;
 }
 
-a:active {
-  color: #002f7a;
-}
-
 .btn,
 button,
-input[type="submit"],
 .btn-get-started {
   background: #0066ff;
   color: #fff;
@@ -68,12 +63,8 @@ button:hover,
   box-shadow: 0 6px 18px rgba(0, 90, 255, 0.25);
 }
 
-.btn:active {
-  background: #002a80;
-}
-
 /* ============================================================
-   3. SPACING SCALE & SURFACES  (LAB 2)
+   3. SPACING SYSTEM  (LAB 2)
 ============================================================ */
 
 :root {
@@ -86,43 +77,14 @@ section {
   padding: var(--space-lg) 0;
 }
 
-#about,
-#services,
-#contact {
-  padding: var(--space-lg) 0;
-}
-
-.surface {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: var(--space-md);
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.06);
-}
-
 /* ============================================================
-   4. COMPONENTS RESTYLED  (LAB 2)
+   4. NAVBAR & UI  (LAB 2)
 ============================================================ */
 
-/* NAVBAR */
 .header {
   background: #ffffffee;
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-}
-
-@media (min-width: 1200px) {
-  .navmenu ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-  }
-
-  .navmenu li {
-    padding: 15px 14px;
-  }
 }
 
 .navmenu a {
@@ -136,105 +98,37 @@ section {
   color: #0066ff;
 }
 
-/* BACK TO TOP */
-.scroll-top {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: #0066ff;
-  box-shadow: 0 6px 24px rgba(0, 90, 255, 0.25);
-}
-
-.scroll-top:hover {
-  background: #0054d6;
-}
-
 /* ============================================================
-   5. TABLE & LIST STYLING  (LAB 2)
+   5. HERO SECTION  (LAB 3)
 ============================================================ */
 
-ul.custom-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-ul.custom-list li {
-  position: relative;
-  padding-left: 28px;
-  margin-bottom: 10px;
-}
-
-ul.custom-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: -2px;
-  color: #0066ff;
-  font-size: 22px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-  margin-bottom: var(--space-md);
-}
-
-table thead {
-  background: #eaf2ff;
-}
-
-table th,
-table td {
-  padding: 14px;
-  border-bottom: 1px solid #ddd;
-}
-
-table tbody tr:nth-child(even) {
-  background: #f7faff;
-}
-
-table tbody tr:hover {
-  background: #e3efff;
-}
-
-td.numeric {
-  text-align: right;
-}
-
-/* ============================================================
-   6. HERO SECTION + IMAGE FIX  (LAB 3)
-============================================================ */
-
-.hero,
 #hero {
   background-image: url("/rahulwebsitelast/assets/img/hero-bg.jpg");
-  background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-position: center;
   min-height: 100vh;
   position: relative;
 }
 
-.hero::before {
+#hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.45);
 }
 
-.hero .container {
+#hero .container {
   position: relative;
   z-index: 2;
 }
 
-.hero h2,
-.hero p {
-  color: #ffffff;
+#hero h2,
+#hero p {
+  color: #fff;
 }
 
 /* ============================================================
-   7. LAB 4 – ANIMATION 1 (fade-in)
+   6. LAB 4 – ANIMATIONS
 ============================================================ */
 
 .section {
@@ -242,22 +136,11 @@ td.numeric {
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ============================================================
-   8. LAB 4 – ANIMATION 2 (button pulse)
-============================================================ */
-
-.btn:hover,
-.btn-get-started:hover {
+.btn:hover {
   animation: pulse 0.4s ease-in-out;
 }
 
@@ -268,16 +151,16 @@ td.numeric {
 }
 
 /* ============================================================
-   9. LAB 4 – CSS ONLY LOADER
+   7. LAB 4 – LOADER
 ============================================================ */
 
 #preloader {
   position: fixed;
   inset: 0;
-  background: #ffffff;
+  background: #fff;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 
@@ -296,23 +179,7 @@ td.numeric {
 }
 
 /* ============================================================
-   10. LAB 4 – OPTIONAL: Animated Gradient Background
-============================================================ */
-
-body {
-  background: linear-gradient(120deg, #f7faff, #ffffff);
-  background-size: 200% 200%;
-  animation: gradientMove 12s ease infinite;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ============================================================
-   11. ACCESSIBILITY – REDUCED MOTION
+   8. ACCESSIBILITY
 ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -323,58 +190,21 @@ body {
 }
 
 /* ============================================================
-   LAB 3 OPTIONAL – ORDERED + NESTED LIST WITH COUNTERS
+   LAB 6 – MEMORY GAME (🔥 FIXED & FINAL 🔥)
 ============================================================ */
 
-ol.custom-counter {
-  counter-reset: section;
-  list-style: none;
-  padding-left: 0;
-}
-
-ol.custom-counter > li {
-  counter-increment: section;
-  margin-bottom: 12px;
-  padding-left: 40px;
-  position: relative;
-  font-weight: 600;
-}
-
-ol.custom-counter > li::before {
-  content: counter(section) ".";
-  position: absolute;
-  left: 0;
-  color: #0066ff;
-}
-
-ol.custom-counter li ol {
-  counter-reset: subsection;
-}
-
-ol.custom-counter li ol li {
-  counter-increment: subsection;
-  padding-left: 32px;
-}
-
-ol.custom-counter li ol li::before {
-  content: counter(section) "." counter(subsection);
-  position: absolute;
-  left: 0;
-  color: #4CAF50;
-}
-/* =====================================================
-   LAB 6 – MEMORY GAME (REQUIRED CSS)
-===================================================== */
-
+/* BOARD */
 .game-board {
   display: grid;
   gap: 12px;
-  margin-top: 20px;
-  max-width: 420px;
+  justify-content: center;
+  margin: 20px auto;
+  width: max-content;
 }
 
-/* GAME CARD */
+/* CARD – BOOTSTRAP KILL */
 .game-board .card {
+  all: unset;                 /* 🔥 THIS FIXES YOUR BUG */
   width: 80px;
   height: 80px;
   background: #e0e0e0;
@@ -389,16 +219,15 @@ ol.custom-counter li ol li::before {
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
-/* FLIPPED CARD */
+/* REVEALED */
 .game-board .card.revealed {
   background: #ffffff;
   transform: scale(1.05);
 }
 
-/* MATCHED CARD */
+/* MATCHED */
 .game-board .card.matched {
   background: #34b7a7;
   color: #fff;
   cursor: default;
 }
-
