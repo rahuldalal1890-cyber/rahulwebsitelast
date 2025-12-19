@@ -3,18 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Contact - Rahul Dalal</title>
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;600;700&family=Raleway:wght@400;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +39,6 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="resume.html">Resume</a></li>
-        <li><a href="services.html">Services</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
@@ -54,16 +51,16 @@
 <!-- ===== MAIN ===== -->
 <main class="main">
 
-<section id="contact" class="contact section">
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Contact & Feedback</h2>
-    <p>Fill the form below to contact me</p>
+<section class="contact section">
+  <div class="container text-center" data-aos="fade-up">
+    <h2>Contact Form</h2>
+    <p>Please fill the form below</p>
   </div>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-    <!-- ===== CONTACT FORM (ID MUST MATCH JS) ===== -->
-    <form id="rahul-contact-form" class="php-email-form">
+    <!-- ✅ CONTACT FORM (NO php-email-form CLASS) -->
+    <form id="rahul-contact-form">
 
       <div class="row gy-4">
 
@@ -80,38 +77,39 @@
         </div>
 
         <div class="col-md-6">
-          <input type="text" id="phone" class="form-control" placeholder="Phone" required>
+          <input type="text" id="phone" class="form-control" placeholder="Phone Number">
         </div>
 
         <div class="col-md-12">
-          <input type="text" id="address" class="form-control" placeholder="Address" required>
+          <input type="text" id="address" class="form-control" placeholder="Address">
         </div>
 
-        <!-- Ratings -->
         <div class="col-md-4">
           <label>Service (1–10)</label>
-          <input type="number" id="rating1" min="1" max="10" class="form-control" required>
+          <input type="number" id="rating1" min="1" max="10" class="form-control">
         </div>
 
         <div class="col-md-4">
           <label>Support (1–10)</label>
-          <input type="number" id="rating2" min="1" max="10" class="form-control" required>
+          <input type="number" id="rating2" min="1" max="10" class="form-control">
         </div>
 
         <div class="col-md-4">
           <label>Website (1–10)</label>
-          <input type="number" id="rating3" min="1" max="10" class="form-control" required>
+          <input type="number" id="rating3" min="1" max="10" class="form-control">
         </div>
 
         <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+          <button type="submit" class="btn btn-primary mt-3">
+            Submit
+          </button>
         </div>
 
       </div>
     </form>
 
-    <!-- ===== RESULT OUTPUT ===== -->
-    <div id="form-results" class="mt-4 text-center"></div>
+    <!-- RESULT -->
+    <div id="form-results" class="mt-4 text-center fw-bold"></div>
 
   </div>
 </section>
@@ -120,10 +118,10 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer text-center">
-  <p>© 2025 <strong>Rahul Dalal</strong>. All Rights Reserved</p>
+  <p>© 2025 <strong>Rahul Dalal</strong></p>
 </footer>
 
-<!-- ===== JS FILES ===== -->
+<!-- ===== JS ===== -->
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/js/main.js"></script>
