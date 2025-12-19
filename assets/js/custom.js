@@ -23,13 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function showError(input, msg) {
       input.classList.add("is-invalid");
-      let small = input.nextElementSibling;
+      const small = input.nextElementSibling;
       if (small) small.textContent = msg;
     }
 
     function clearError(input) {
       input.classList.remove("is-invalid");
-      let small = input.nextElementSibling;
+      const small = input.nextElementSibling;
       if (small) small.textContent = "";
     }
 
@@ -63,7 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
       digits = digits.slice(0, 8);
 
       phoneInput.value =
-        "+370 6" + digits.slice(0, 2) + (digits.length > 2 ? " " + digits.slice(2) : "");
+        "+370 6" + digits.slice(0, 2) +
+        (digits.length > 2 ? " " + digits.slice(2) : "");
 
       if (digits.length !== 8)
         return showError(phoneInput, "Format: +370 6xx xxxxx"), false;
@@ -103,13 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       if (!checkForm()) return;
 
-      const avg = (
-        Number(rating1.value) +
-        Number(rating2.value) +
-        Number(rating3.value)
-      ) / 3;
+      const avg =
+        (Number(rating1.value) +
+         Number(rating2.value) +
+         Number(rating3.value)) / 3;
 
-      let color = avg < 4 ? "red" : avg < 7 ? "orange" : "green";
+      const color = avg < 4 ? "red" : avg < 7 ? "orange" : "green";
 
       resultsBox.innerHTML = `
         <p>Name: ${nameInput.value}</p>
@@ -122,18 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
           ${nameInput.value} ${surnameInput.value}: ${avg.toFixed(1)}
         </p>
       `;
-
-      const popup = document.createElement("div");
-      popup.textContent = "✔ Form submitted successfully!";
-      popup.style.cssText =
-        "position:fixed;top:20px;right:20px;background:#34b7a7;color:#fff;padding:14px 18px;border-radius:12px;font-weight:600;z-index:99999;";
-      document.body.appendChild(popup);
-      setTimeout(() => popup.remove(), 2500);
     });
   }
 
   /* =====================================================
-     LAB 6 – MEMORY GAME (FINAL FIXED VERSION)
+     LAB 6 – MEMORY GAME (FINAL + OPTIONAL TIMER)
   ====================================================== */
   const board = document.getElementById("gameBoard");
   if (!board) return;
@@ -144,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const startBtn = document.getElementById("startGame");
   const restartBtn = document.getElementById("restartGame");
   const difficultySelect = document.getElementById("difficulty");
+  const timeEl = document.getElementById("time");
 
   const emojis = ['🍎','🍌','🍇','🍒','🍉','🍍','🥝','🍑','🍓','🍊','🍋','🥭'];
 
@@ -152,6 +146,24 @@ document.addEventListener("DOMContentLoaded", () => {
   let moves = 0;
   let matches = 0;
   let totalPairs = 0;
+
+  /* TIMER (OPTIONAL TASK) */
+  let timer = null;
+  let seconds = 0;
+
+  function startTimer() {
+    clearInterval(timer);
+    seconds = 0;
+    timeEl.textContent = "0";
+    timer = setInterval(() => {
+      seconds++;
+      timeEl.textContent = seconds;
+    }, 1000);
+  }
+
+  function stopTimer() {
+    clearInterval(timer);
+  }
 
   function setupGame() {
     board.innerHTML = "";
@@ -164,11 +176,11 @@ document.addEventListener("DOMContentLoaded", () => {
     matchesEl.textContent = "0";
     winMsg.style.display = "none";
 
-    const isHard = difficultySelect.value === "hard";
-    totalPairs = isHard ? 12 : 6;
+    const hard = difficultySelect.value === "hard";
+    totalPairs = hard ? 12 : 6;
 
     board.style.gridTemplateColumns =
-      isHard ? "repeat(6, 1fr)" : "repeat(4, 1fr)";
+      hard ? "repeat(6, 1fr)" : "repeat(4, 1fr)";
 
     const selected = emojis.slice(0, totalPairs);
     const cards = [...selected, ...selected].sort(() => Math.random() - 0.5);
@@ -180,6 +192,8 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", () => flipCard(card));
       board.appendChild(card);
     });
+
+    startTimer();
   }
 
   function flipCard(card) {
@@ -206,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (matches === totalPairs) {
         winMsg.style.display = "block";
+        stopTimer();
       }
     } else {
       setTimeout(() => {
