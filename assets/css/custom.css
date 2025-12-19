@@ -362,3 +362,43 @@ ol.custom-counter li ol li::before {
   left: 0;
   color: #4CAF50;
 }
+/* =====================================================
+   LAB 6 – MEMORY GAME (REQUIRED CSS)
+===================================================== */
+
+.game-board {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+  max-width: 420px;
+}
+
+/* GAME CARD */
+.game-board .card {
+  width: 80px;
+  height: 80px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  font-size: 32px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* FLIPPED CARD */
+.game-board .card.revealed {
+  background: #ffffff;
+  transform: scale(1.05);
+}
+
+/* MATCHED CARD */
+.game-board .card.matched {
+  background: #34b7a7;
+  color: #fff;
+  cursor: default;
+}
+
