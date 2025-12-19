@@ -86,8 +86,17 @@
     <p>Matches: <span id="matches">0</span></p>
     <p>Time: <span id="gameTime">0</span> sec</p>
 
-    <!-- GAME BOARD (⚠️ THIS LINE IS CRITICAL) -->
-    <div id="gameBoard" class="game-board mx-auto"></div>
+    <!-- 🔥 GAME BOARD (FORCE GRID – FINAL FIX) -->
+    <div
+      id="gameBoard"
+      class="game-board mx-auto"
+      style="
+        display: grid;
+        grid-template-columns: repeat(4, 80px);
+        gap: 12px;
+        justify-content: center;
+      ">
+    </div>
 
     <!-- Win Message -->
     <p id="winMessage" style="display:none; font-weight:bold;">
