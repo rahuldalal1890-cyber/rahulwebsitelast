@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
-     LAB 5 – CONTACT FORM (FINAL SAVE FIX)
+     LAB 5 – CONTACT FORM (FINAL, SIMPLE & WORKING)
   ====================================================== */
 
   const form = document.getElementById("rahul-contact-form");
-  if (!form) return;
+  if (!form) return;   // agar contact page nahi hai to kuch mat karo
 
-  const resultsBox = document.getElementById("form-results");
+  const resultBox = document.getElementById("form-results");
   const submitBtn = form.querySelector("button[type='submit']");
 
   const nameInput = document.getElementById("name");
@@ -22,63 +22,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
   submitBtn.disabled = true;
 
-  function invalid(input) {
-    input.classList.add("is-invalid");
+  /* ===== VALIDATION HELPERS ===== */
+  function invalid(el) {
+    el.classList.remove("is-valid");
+    el.classList.add("is-invalid");
   }
 
-  function valid(input) {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
+  function valid(el) {
+    el.classList.remove("is-invalid");
+    el.classList.add("is-valid");
   }
 
-  function validateText(input) {
-    if (input.value.trim().length < 2) {
-      invalid(input);
+  function checkText(el) {
+    if (el.value.trim().length < 2) {
+      invalid(el);
       return false;
     }
-    valid(input);
+    valid(el);
     return true;
   }
 
-  function validateEmail(input) {
-    const ok = /^\S+@\S+\.\S+$/.test(input.value.trim());
-    ok ? valid(input) : invalid(input);
+  function checkEmail(el) {
+    const ok = /^\S+@\S+\.\S+$/.test(el.value.trim());
+    ok ? valid(el) : invalid(el);
     return ok;
   }
 
-  function validateNumber(input) {
-    const val = Number(input.value);
-    if (val < 1 || val > 10) {
-      invalid(input);
+  function checkRating(el) {
+    const v = Number(el.value);
+    if (v < 1 || v > 10) {
+      invalid(el);
       return false;
     }
-    valid(input);
+    valid(el);
     return true;
   }
 
+  /* ===== FORM CHECK ===== */
   function checkForm() {
     const ok =
-      validateText(nameInput) &&
-      validateText(surnameInput) &&
-      validateEmail(emailInput) &&
-      validateText(phoneInput) &&
-      validateText(addressInput) &&
-      validateNumber(rating1) &&
-      validateNumber(rating2) &&
-      validateNumber(rating3);
+      checkText(nameInput) &&
+      checkText(surnameInput) &&
+      checkEmail(emailInput) &&
+      checkText(phoneInput) &&
+      checkText(addressInput) &&
+      checkRating(rating1) &&
+      checkRating(rating2) &&
+      checkRating(rating3);
 
     submitBtn.disabled = !ok;
     return ok;
   }
 
   [
-    nameInput, surnameInput, emailInput,
-    phoneInput, addressInput,
-    rating1, rating2, rating3
+    nameInput,
+    surnameInput,
+    emailInput,
+    phoneInput,
+    addressInput,
+    rating1,
+    rating2,
+    rating3
   ].forEach(el => el.addEventListener("input", checkForm));
 
   /* ===== SAVE DATA ===== */
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const data = {
@@ -90,17 +98,21 @@ document.addEventListener("DOMContentLoaded", () => {
       rating1: rating1.value,
       rating2: rating2.value,
       rating3: rating3.value,
-      time: new Date().toLocaleString()
+      savedAt: new Date().toLocaleString()
     };
 
-    // 🔥 ACTUAL SAVE
+    // ✅ SAVE TO LOCAL STORAGE
     localStorage.setItem("rahul_contact_data", JSON.stringify(data));
 
-    resultsBox.innerHTML =
-      "✅ Form saved successfully (localStorage)";
+    resultBox.innerHTML = "✅ Form saved successfully!";
+    resultBox.style.color = "green";
 
     form.reset();
     submitBtn.disabled = true;
+
+    // remove green/red after reset
+    document.querySelectorAll(".is-valid, .is-invalid")
+      .forEach(el => el.classList.remove("is-valid", "is-invalid"));
   });
 
 });
@@ -262,6 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
   difficulty.addEventListener("change", setupGame);
 
 });
+
 
 
 
