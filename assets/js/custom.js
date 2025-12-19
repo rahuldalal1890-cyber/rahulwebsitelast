@@ -1,25 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =====================================================
-     LAB 5 – CONTACT FORM (SAFE)
+     LAB 5 – CONTACT FORM (FINAL FIX – COLORS + DATA)
   ====================================================== */
   const form = document.getElementById("rahul-contact-form");
   if (form) {
+
     const resultsBox = document.getElementById("form-results");
     const submitBtn = form.querySelector("button[type='submit']");
 
     const nameInput = document.getElementById("name");
     const surnameInput = document.getElementById("surname");
     const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const addressInput = document.getElementById("address");
+
+    const rating1 = document.getElementById("rating1");
+    const rating2 = document.getElementById("rating2");
+    const rating3 = document.getElementById("rating3");
 
     submitBtn.disabled = true;
 
+    function showError(input) {
+      input.classList.add("is-invalid");
+    }
+
+    function clearError(input) {
+      input.classList.remove("is-invalid");
+    }
+
     function validate(input, regex) {
       if (!regex.test(input.value.trim())) {
-        input.classList.add("is-invalid");
+        showError(input);
         return false;
       }
-      input.classList.remove("is-invalid");
+      clearError(input);
+      return true;
+    }
+
+    function validateRating(input) {
+      const v = Number(input.value);
+      if (isNaN(v) || v < 0 || v > 10) {
+        showError(input);
+        return false;
+      }
+      clearError(input);
       return true;
     }
 
@@ -27,27 +52,53 @@ document.addEventListener("DOMContentLoaded", () => {
       const ok =
         validate(nameInput, /^[A-Za-z]+$/) &&
         validate(surnameInput, /^[A-Za-z]+$/) &&
-        validate(emailInput, /^\S+@\S+\.\S+$/);
+        validate(emailInput, /^\S+@\S+\.\S+$/) &&
+        validateRating(rating1) &&
+        validateRating(rating2) &&
+        validateRating(rating3);
 
       submitBtn.disabled = !ok;
       return ok;
     }
 
-    [nameInput, surnameInput, emailInput].forEach(el =>
-      el.addEventListener("input", checkForm)
-    );
+    [
+      nameInput, surnameInput, emailInput,
+      phoneInput, addressInput,
+      rating1, rating2, rating3
+    ].forEach(el => el.addEventListener("input", checkForm));
 
     form.addEventListener("submit", e => {
       e.preventDefault();
-      resultsBox.innerHTML = "<p>Form submitted successfully</p>";
+      if (!checkForm()) return;
+
+      const avg =
+        (Number(rating1.value) +
+         Number(rating2.value) +
+         Number(rating3.value)) / 3;
+
+      let color = "green";
+      if (avg < 4) color = "red";
+      else if (avg < 7) color = "orange";
+
+      resultsBox.innerHTML = `
+        <p><b>Name:</b> ${nameInput.value} ${surnameInput.value}</p>
+        <p><b>Email:</b> ${emailInput.value}</p>
+        <p><b>Phone:</b> ${phoneInput.value}</p>
+        <p><b>Address:</b> ${addressInput.value}</p>
+        <hr>
+        <p style="font-weight:bold;color:${color}">
+          Average Rating: ${avg.toFixed(1)}
+        </p>
+      `;
     });
   }
 
   /* =====================================================
-     SMART WATCH – SAFE & WORKING
+     SMART WATCH – SAFE & WORKING (UNCHANGED)
   ====================================================== */
   const timeEl = document.getElementById("time");
   if (timeEl) {
+
     const dateEl = document.getElementById("date");
     const heartEl = document.getElementById("heart");
     const stepsEl = document.getElementById("steps");
@@ -89,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-     LAB 6 – MEMORY GAME + TIMER (FINAL FIX)
+     LAB 6 – MEMORY GAME + TIMER (UNCHANGED)
   ====================================================== */
   const board = document.getElementById("gameBoard");
   if (!board) return;
@@ -110,7 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let matches = 0;
   let totalPairs = 0;
 
-  /* ===== TIMER ===== */
   let seconds = 0;
   let timerInterval = null;
 
@@ -125,10 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function stopTimer() {
-    if (timerInterval) {
-      clearInterval(timerInterval);
-      timerInterval = null;
-    }
+    if (timerInterval) clearInterval(timerInterval);
   }
 
   function setupGame() {
@@ -144,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const hard = difficulty.value === "hard";
     totalPairs = hard ? 12 : 6;
-    board.style.gridTemplateColumns = hard ? "repeat(6,1fr)" : "repeat(4,1fr)";
+    board.style.gridTemplateColumns =
+      hard ? "repeat(6,1fr)" : "repeat(4,1fr)";
 
     const deck = [...emojis.slice(0, totalPairs), ...emojis.slice(0, totalPairs)]
       .sort(() => Math.random() - 0.5);
@@ -157,7 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
       board.appendChild(card);
     });
 
-    startTimer(); // ✅ TIMER START
+    startTimer();
   }
 
   function flip(card) {
@@ -180,10 +228,9 @@ document.addEventListener("DOMContentLoaded", () => {
       matches++;
       matchesEl.textContent = matches;
       reset();
-
       if (matches === totalPairs) {
         winMsg.style.display = "block";
-        stopTimer(); // ✅ TIMER STOP
+        stopTimer();
       }
     } else {
       setTimeout(() => {
