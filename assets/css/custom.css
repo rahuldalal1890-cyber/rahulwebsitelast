@@ -1,11 +1,11 @@
 /* ============================================================
    CUSTOM STYLING – STUDENT WORK
-   Author: Raj
+   Author: Rahul
    Assignment-compliant custom CSS
    ============================================================ */
 
 /* ============================================================
-   1. TYPOGRAPHY SYSTEM (1.5 pts)
+   1. TYPOGRAPHY SYSTEM
    ============================================================ */
 
 h1, h2, h3 {
@@ -29,7 +29,7 @@ p {
 }
 
 /* ============================================================
-   2. INTERACTIVE ELEMENTS (1.5 pts)
+   2. INTERACTIVE ELEMENTS
    ============================================================ */
 
 /* Links */
@@ -73,7 +73,7 @@ button:hover {
 }
 
 /* ============================================================
-   3. SPACING SCALE & SURFACES (1.5 pts)
+   3. SPACING SCALE & SURFACES
    ============================================================ */
 
 :root {
@@ -86,7 +86,7 @@ section {
   padding: var(--space-lg) 0;
 }
 
-/* At least 3 sections */
+/* Minimum three sections */
 #about,
 #services,
 #contact {
@@ -103,17 +103,17 @@ section {
 }
 
 /* ============================================================
-   4. TWO COMPONENTS RESTYLED (1.5 pts)
+   4. TWO COMPONENTS RESTYLED
    ============================================================ */
 
-/* COMPONENT 1: NAVBAR (appearance only) */
+/* COMPONENT 1: NAVBAR */
 .header {
   background: #ffffffee;
   backdrop-filter: blur(8px);
   box-shadow: 0 6px 24px rgba(0,0,0,0.08);
 }
 
-/* Fix bullets + layout (desktop only) */
+/* Desktop nav layout */
 @media (min-width: 1200px) {
   .navmenu ul {
     list-style: none;
@@ -153,7 +153,7 @@ section {
 }
 
 /* ============================================================
-   OPTIONAL (SAFE): Styled Lists
+   OPTIONAL: CUSTOM LIST STYLE
    ============================================================ */
 
 ul.custom-list {
@@ -177,7 +177,7 @@ ul.custom-list li::before {
 }
 
 /* ============================================================
-   OPTIONAL (SAFE): Table Styling
+   OPTIONAL: TABLE STYLING
    ============================================================ */
 
 table {
@@ -209,29 +209,15 @@ td.numeric {
   text-align: right;
 }
 
-}
-
-/* Matched card */
-#memory-game .card.matched {
-  background-color: #8bc34a;
-  color: #ffffff;
-  cursor: default;
-}
 /* ============================================================
-   CUSTOM STYLING – STUDENT WORK
-   Author: Raj
-   Emoji Memory Match Component
+   MEMORY GAME COMPONENT
+   Author: Rahul
    ============================================================ */
-
-/* ------------------------------
-   MEMORY GAME SECTION
--------------------------------- */
 
 #memory-game {
   padding: 80px 0;
 }
 
-/* Card container */
 .memory-wrapper {
   max-width: 600px;
   width: 100%;
@@ -239,26 +225,20 @@ td.numeric {
   border-radius: 30px;
   padding: 40px 30px;
   text-align: center;
-  box-shadow: 
+  box-shadow:
     10px 10px 30px #bebebe,
     -10px -10px 30px #ffffff;
 }
 
-/* Title */
 #memory-game h2 {
   font-weight: 700;
   margin-bottom: 10px;
 }
 
-/* Score text */
 #memory-game p {
   font-size: 1.2rem;
   font-weight: 500;
 }
-
-/* ------------------------------
-   GAME BOARD
--------------------------------- */
 
 .game-board {
   display: grid;
@@ -267,7 +247,6 @@ td.numeric {
   margin-top: 25px;
 }
 
-/* Cards */
 .card {
   aspect-ratio: 1 / 1;
   background-color: #2d2d2d;
@@ -279,30 +258,21 @@ td.numeric {
   font-size: 2rem;
   cursor: pointer;
   user-select: none;
-  transition: 
-    transform 0.2s ease,
-    background-color 0.3s ease;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-/* Hover animation */
 .card:hover {
   transform: scale(1.05);
 }
 
-/* Revealed card */
 .card.revealed {
   background-color: #4CAF50;
 }
 
-/* Matched card */
 .card.matched {
   background-color: #2196F3;
   cursor: default;
 }
-
-/* ------------------------------
-   WIN MESSAGE
--------------------------------- */
 
 .win-message {
   display: none;
@@ -312,10 +282,7 @@ td.numeric {
   color: #4CAF50;
 }
 
-/* ------------------------------
-   ACCESSIBILITY
--------------------------------- */
-
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   .card {
     transition: none;
