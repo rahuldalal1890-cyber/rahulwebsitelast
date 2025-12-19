@@ -13,34 +13,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const surnameInput = document.getElementById("surname");
     const emailInput = document.getElementById("email");
     const phoneInput = document.getElementById("phone");
-    const addressInput = document.getElementById("address");
-
-    const rating1 = document.getElementById("rating1");
-    const rating2 = document.getElementById("rating2");
-    const rating3 = document.getElementById("rating3");
 
     submitBtn.disabled = true;
 
-    function showError(input, msg) {
-      input.classList.add("is-invalid");
-    }
-
-    function clearError(input) {
-      input.classList.remove("is-invalid");
-    }
-
     function validate(input, regex) {
       if (!regex.test(input.value.trim())) {
-        showError(input);
+        input.classList.add("is-invalid");
         return false;
       }
-      clearError(input);
-      return true;
-    }
-
-    function validatePhone() {
-      let digits = phoneInput.value.replace(/\D/g, "");
-      if (digits.length !== 11) return false;
+      input.classList.remove("is-invalid");
       return true;
     }
 
@@ -48,24 +29,23 @@ document.addEventListener("DOMContentLoaded", () => {
       const ok =
         validate(nameInput, /^[A-Za-z]+$/) &&
         validate(surnameInput, /^[A-Za-z]+$/) &&
-        validate(emailInput, /^\S+@\S+\.\S+$/) &&
-        validatePhone();
+        validate(emailInput, /^\S+@\S+\.\S+$/);
 
       submitBtn.disabled = !ok;
       return ok;
     }
 
-    [nameInput, surnameInput, emailInput, phoneInput, addressInput, rating1, rating2, rating3]
+    [nameInput, surnameInput, emailInput, phoneInput]
       .forEach(el => el.addEventListener("input", checkForm));
 
     form.addEventListener("submit", e => {
       e.preventDefault();
-      resultsBox.innerHTML = `<p>Form submitted successfully</p>`;
+      resultsBox.innerHTML = "<p>Form submitted successfully</p>";
     });
   }
 
   /* =====================================================
-     SMART WATCH – UI PROJECT (FINAL FIX)
+     SMART WATCH – UI PROJECT (SAFE)
   ====================================================== */
   const timeEl = document.getElementById("time");
   if (timeEl) {
@@ -84,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
       let m = now.getMinutes();
       h = h < 10 ? "0" + h : h;
       m = m < 10 ? "0" + m : m;
-
       timeEl.textContent = h + ":" + m;
       dateEl.textContent = now.toDateString();
     }
@@ -96,14 +75,14 @@ document.addEventListener("DOMContentLoaded", () => {
       heartEl.textContent = Math.floor(Math.random() * 20) + 60;
     }, 2000);
 
-    window.walk = function () {
+    window.walk = () => {
       steps += Math.floor(Math.random() * 200);
       stepsEl.textContent = steps;
       if (battery > 0) battery--;
       batteryEl.textContent = battery + "%";
     };
 
-    window.resetWatch = function () {
+    window.resetWatch = () => {
       steps = 3500;
       battery = 85;
       stepsEl.textContent = steps;
@@ -112,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =====================================================
-     LAB 6 – MEMORY GAME (FINAL, SAFE)
+     LAB 6 – MEMORY GAME (FINAL & WORKING)
   ====================================================== */
   const board = document.getElementById("gameBoard");
   if (board) {
@@ -134,8 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function setupGame() {
       board.innerHTML = "";
+      firstCard = null;
+      lock = false;
       moves = 0;
       matches = 0;
+
       movesEl.textContent = "0";
       matchesEl.textContent = "0";
       winMsg.style.display = "none";
@@ -151,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.className = "card";
         card.dataset.emoji = e;
-        card.onclick = () => flip(card);
+        card.addEventListener("click", () => flip(card));
         board.appendChild(card);
       });
     }
@@ -191,9 +173,9 @@ document.addEventListener("DOMContentLoaded", () => {
       lock = false;
     }
 
-    startBtn.onclick = setupGame;
-    restartBtn.onclick = setupGame;
-    difficulty.onchange = setupGame;
+    startBtn.addEventListener("click", setupGame);
+    restartBtn.addEventListener("click", setupGame);
+    difficulty.addEventListener("change", setupGame);
   }
 
 });
