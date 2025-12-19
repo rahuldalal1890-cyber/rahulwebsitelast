@@ -26,6 +26,69 @@ document.addEventListener("DOMContentLoaded", () => {
       const small = input.nextElementSibling;
       if (small) small.textContent = msg;
     }
+/* =====================================================
+   SMART WATCH – UI PROJECT (LAST LAB)
+   Author: Rahul Dalal
+===================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===== SAFETY CHECK ===== */
+  const timeEl = document.getElementById("time");
+  if (!timeEl) return;   // agar smartwatch page nahi hai → kuch mat karo
+
+  const dateEl = document.getElementById("date");
+  const heartEl = document.getElementById("heart");
+  const stepsEl = document.getElementById("steps");
+  const batteryEl = document.getElementById("battery");
+
+  /* ===== DEFAULT VALUES ===== */
+  let steps = 3500;
+  let battery = 85;
+
+  /* ===== TIME & DATE ===== */
+  function updateTime() {
+    const now = new Date();
+
+    let h = now.getHours();
+    let m = now.getMinutes();
+
+    h = h < 10 ? "0" + h : h;
+    m = m < 10 ? "0" + m : m;
+
+    timeEl.textContent = h + ":" + m;
+    dateEl.textContent = now.toDateString();
+  }
+
+  updateTime();
+  setInterval(updateTime, 1000);
+
+  /* ===== HEART RATE SIMULATION ===== */
+  setInterval(() => {
+    heartEl.textContent = Math.floor(Math.random() * 20) + 60;
+  }, 2000);
+
+  /* ===== WALK BUTTON ===== */
+  window.walk = function () {
+    steps += Math.floor(Math.random() * 200);
+    stepsEl.textContent = steps;
+
+    if (battery > 0) {
+      battery--;
+      batteryEl.textContent = battery + "%";
+    }
+  };
+
+  /* ===== RESET BUTTON ===== */
+  window.resetWatch = function () {
+    steps = 3500;
+    battery = 85;
+
+    stepsEl.textContent = steps;
+    batteryEl.textContent = battery + "%";
+  };
+
+});
 
     function clearError(input) {
       input.classList.remove("is-invalid");
@@ -209,3 +272,4 @@ document.addEventListener("DOMContentLoaded", () => {
   difficulty.addEventListener("change", setupGame);
 
 });
+
