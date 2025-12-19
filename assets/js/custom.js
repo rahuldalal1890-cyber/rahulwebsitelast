@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* =====================================================
      LAB 5 – CONTACT FORM (FINAL FIX – COLORS + DATA)
   ====================================================== */
-  const form = document.getElementById("rahul-contact-form");
+  const form = document.getElementById("raj-contact-form");
   if (form) {
 
     const resultsBox = document.getElementById("form-results");
@@ -251,3 +251,4 @@ document.addEventListener("DOMContentLoaded", () => {
   difficulty.addEventListener("change", setupGame);
 
 });
+
