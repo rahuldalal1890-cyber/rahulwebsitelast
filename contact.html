@@ -3,173 +3,342 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - Rahul Dalal</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Contact - Kelly Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
 
+  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS -->
+  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
-  <!-- Main + Custom CSS -->
+  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-  <link href="assets/css/custom.css" rel="stylesheet">
+ <link href="assets/css/custom.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Kelly
+  * Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body class="contact-page">
 
-<!-- ===== HEADER ===== -->
-<header id="header" class="header sticky-top">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    <a href="index.html" class="logo">
-      <h1 class="sitename">RAHUL</h1>
-    </a>
+  <header id="header" class="header d-flex align-items-center light-background sticky-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
 
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">Kelly</h1>
+      </a>
+
+   
     <nav id="navmenu" class="navmenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+
+    <!-- ⭐ NEW STARTER PAGE MENU ITEM -->
+    <li><a href="starter.html">Starter Page</a></li>
+<li><a href="smartwatch.html">smartwatch</a></li>
+
+    <!-- ⭐ END NEW ITEM -->
+
+    <li class="dropdown"><a href="#"><span>Dropdown</span> 
+      <i class="bi bi-chevron-down toggle-dropdown"></i></a>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="smartwatch.html">Smartwatch</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="#">Dropdown 1</a></li>
+
+        <li class="dropdown"><a href="#">
+          <span>Deep Dropdown</span>
+          <i class="bi bi-chevron-down toggle-dropdown"></i>
+        </a>
+          <ul>
+            <li><a href="#">Deep Dropdown 1</a></li>
+            <li><a href="#">Deep Dropdown 2</a></li>
+            <li><a href="#">Deep Dropdown 3</a></li>
+            <li><a href="#">Deep Dropdown 4</a></li>
+            <li><a href="#">Deep Dropdown 5</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#">Dropdown 2</a></li>
+        <li><a href="#">Dropdown 3</a></li>
+        <li><a href="#">Dropdown 4</a></li>
       </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
+    </li>
+
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+
+      <div class="header-social-links">
+        <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact & Feedback</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-5">
+
+            <div class="info-wrap">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>LIthuania vilnius pin -10223</p>
+                </div>
+              </div><!-- End Info Item -->
+
+               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Name</h3>
+                  <p>Rahul Dalal</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Us</h3>
+                  <p>+370602645757</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email Us</h3>
+                  <p>rahuldalal56@gmail.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+            <iframe 
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23018.765269229353!2d25.252667!3d54.712402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd943bdb6f3f85%3A0xf2e9838f4762b5b8!2sVilnius%20Gediminas%20Technical%20University!5e0!3m2!1sen!2slt!4v1630000000000!5m2!1sen!2slt" 
+  frameborder="0" 
+  style="border:0; width:100%; height:270px;" 
+  allowfullscreen="" 
+  loading="lazy" 
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+            </div>
+          </div>
+
+    
+
+<!-- Display results here -->
+<div id="raj-results" class="mt-4"></div>
+
+
+  <footer id="footer" class="footer light-background">
+
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>©️ <span>Copyright</span> <strong class="px-1 sitename">Rahul</strong> <span>All Rights Reserved<br></span></p>
+      </div>
+      <div class="social-links d-flex justify-content-center">
+        <a href=""><i class="bi bi-twitter-x"></i></a>
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href=""><i class="bi bi-instagram"></i></a>
+        <a href=""><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="raj-preloader">
+  <div class="loader"></div>
+</div>
+
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+<!-- custom JS File -->
+  <script src="assets/js/custom.js"></script>
+<!-- Feedback Floating Button + Modal -->
+<div id="feedback-form-wrapper">
+  <div id="floating-icon" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
+    <button type="button"
+            class="btn btn-primary btn-sm rounded-0"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+      Feedback
+    </button>
   </div>
-</header>
 
-<!-- ===== MAIN ===== -->
-<main class="main">
+  <div id="feedback-form-modal">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
 
-<section id="contact" class="contact section">
-  <div class="container section-title text-center">
-    <h2>Contact & Feedback</h2>
-    <p>Please fill the form below</p>
-  </div>
-
-  <div class="container">
-    <div class="row gy-4">
-
-      <!-- ================= LEFT SIDE ================= -->
-      <div class="col-lg-5">
-
-        <!-- MAP -->
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23018.765269229353!2d25.252667!3d54.712402"
-          style="border:0; width:100%; height:250px;"
-          allowfullscreen
-          loading="lazy">
-        </iframe>
-
-        <!-- INFO BELOW MAP -->
-        <div class="info-wrap mt-4">
-
-          <div class="info-item d-flex">
-            <i class="bi bi-person"></i>
-            <div>
-              <h3>Name</h3>
-              <p>Rahul Dalal</p>
-            </div>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Feedback Form</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
 
-          <div class="info-item d-flex">
-            <i class="bi bi-geo-alt"></i>
-            <div>
-              <h3>Address</h3>
-              <p>Vilnius, Lithuania – 10223</p>
-            </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group mb-3">
+                <label>How likely you would like to recommend us to your friends?</label>
+
+                <div class="rating-input-wrapper d-flex justify-content-between mt-2">
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">1</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">2</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">3</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">4</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">5</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">6</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">7</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">8</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">9</span></label>
+                  <label><input type="radio" name="rating" hidden><span class="border rounded px-3 py-2">10</span></label>
+                </div>
+
+                <div class="rating-labels d-flex justify-content-between mt-1">
+                  <label>Very unlikely</label>
+                  <label>Very likely</label>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="input-one">What made you leave us so early?</label>
+                <input type="text" class="form-control" id="input-one">
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="input-two">Would you like to say something?</label>
+                <textarea class="form-control" id="input-two" rows="3"></textarea>
+              </div>
+            </form>
           </div>
 
-          <div class="info-item d-flex">
-            <i class="bi bi-telephone"></i>
-            <div>
-              <h3>Phone</h3>
-              <p>+370 602645757</p>
-            </div>
-          </div>
-
-          <div class="info-item d-flex">
-            <i class="bi bi-envelope"></i>
-            <div>
-              <h3>Email</h3>
-              <p>rahuldalal56@gmail.com</p>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Submit</button>
           </div>
 
         </div>
       </div>
-
-      <!-- ================= RIGHT SIDE ================= -->
-      <div class="col-lg-7">
-
-        <form id="rahul-contact-form">
-
-          <div class="row gy-3">
-
-            <div class="col-md-6">
-              <input type="text" id="name" class="form-control" placeholder="Name">
-            </div>
-
-            <div class="col-md-6">
-              <input type="text" id="surname" class="form-control" placeholder="Surname">
-            </div>
-
-            <div class="col-md-6">
-              <input type="email" id="email" class="form-control" placeholder="Email">
-            </div>
-
-            <div class="col-md-6">
-              <input type="text" id="phone" class="form-control" placeholder="Phone Number">
-            </div>
-
-            <div class="col-md-12">
-              <input type="text" id="address" class="form-control" placeholder="Address">
-            </div>
-
-            <div class="col-md-4">
-              <input type="number" id="rating1" class="form-control" placeholder="Service (1–10)">
-            </div>
-
-            <div class="col-md-4">
-              <input type="number" id="rating2" class="form-control" placeholder="Support (1–10)">
-            </div>
-
-            <div class="col-md-4">
-              <input type="number" id="rating3" class="form-control" placeholder="Website (1–10)">
-            </div>
-
-            <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </div>
-
-          </div>
-        </form>
-
-        <div id="form-results" class="mt-3 text-center"></div>
-      </div>
-
     </div>
   </div>
-</section>
+</div>
 
-</main>
+<form id="raj-contact-form" class="php-email-form">
 
-<footer class="footer text-center">
-  <p>© 2025 <strong>Rahul Dalal</strong></p>
-</footer>
+  <div class="row gy-4">
+    <div class="col-md-6">
+      <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+    </div>
 
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/custom.js"></script>
+    <div class="col-md-6">
+      <input type="text" name="surname" id="surname" class="form-control" placeholder="Surname" required>
+    </div>
+
+    <div class="col-md-6">
+      <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+    </div>
+
+    <div class="col-md-6">
+      <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number" required>
+    </div>
+
+    <div class="col-md-12">
+      <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+    </div>
+
+    <!-- Rating Questions -->
+    <div class="col-md-4">
+      <label>Rate our Service (1–10)</label>
+      <input type="number" min="1" max="10" id="rating1" class="form-control" required>
+    </div>
+
+    <div class="col-md-4">
+      <label>Rate our Support (1–10)</label>
+      <input type="number" min="1" max="10" id="rating2" class="form-control" required>
+    </div>
+
+    <div class="col-md-4">
+      <label>Rate our Website (1–10)</label>
+      <input type="number" min="1" max="10" id="rating3" class="form-control" required>
+    </div>
+
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </div>
+  </div>
+
+</form>
+
+<!-- Where results will appear -->
+<div id="form-results" class="mt-4"></div>
+
+<!-- Popup Success Box -->
+<div id="success-popup">Form submitted successfully!</div>
+
+
 
 </body>
-</html>
+
+</html> 
