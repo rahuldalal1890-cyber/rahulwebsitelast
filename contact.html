@@ -6,117 +6,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Rahul Dalal</title>
 
+  <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins&family=Raleway&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
 
-  <!-- CSS -->
+  <!-- Vendor CSS -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Main CSS -->
   <link href="assets/css/main.css" rel="stylesheet">
   <link href="assets/css/custom.css" rel="stylesheet">
 </head>
 
 <body class="contact-page">
 
-<!-- ===== HEADER ===== -->
+<!-- ================= HEADER ================= -->
 <header id="header" class="header sticky-top">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    <a href="index.html" class="logo">
-      <h1 class="sitename">RAHUL</h1>
-    </a>
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="sitename">RAHUL</h1>
 
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html" class="active">Contact</a>
     </nav>
   </div>
 </header>
 
-<!-- ===== MAIN ===== -->
+<!-- ================= MAIN ================= -->
 <main class="main">
 
-<section id="contact" class="contact section">
+<section class="section">
   <div class="container">
 
-    <div class="section-title text-center">
-      <h2>Contact</h2>
-      <p>Fill the form below</p>
-    </div>
+    <h2 class="text-center mb-4">Contact & Feedback</h2>
 
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
+    <!-- ===== CONTACT FORM ===== -->
+    <form id="rahul-contact-form" class="row gy-3">
 
-        <!-- ✅ FORM -->
-        <form id="rahul-contact-form">
-
-          <div class="row gy-3">
-
-            <div class="col-md-6">
-              <input type="text" id="name" class="form-control" placeholder="Name" required>
-            </div>
-
-            <div class="col-md-6">
-              <input type="text" id="surname" class="form-control" placeholder="Surname" required>
-            </div>
-
-            <div class="col-md-6">
-              <input type="email" id="email" class="form-control" placeholder="Email" required>
-            </div>
-
-            <div class="col-md-6">
-              <input type="text" id="phone" class="form-control" placeholder="Phone">
-            </div>
-
-            <div class="col-md-12">
-              <input type="text" id="address" class="form-control" placeholder="Address">
-            </div>
-
-            <div class="col-md-4">
-              <input type="number" id="rating1" class="form-control" placeholder="Service (1-10)">
-            </div>
-
-            <div class="col-md-4">
-              <input type="number" id="rating2" class="form-control" placeholder="Support (1-10)">
-            </div>
-
-            <div class="col-md-4">
-              <input type="number" id="rating3" class="form-control" placeholder="Website (1-10)">
-            </div>
-
-            <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-primary mt-3">Submit</button>
-            </div>
-
-          </div>
-        </form>
-
-        <!-- RESULT -->
-        <div id="form-results" class="mt-3 text-center fw-bold"></div>
-
+      <div class="col-md-6">
+        <input type="text" id="name" class="form-control" placeholder="Name">
       </div>
-    </div>
+
+      <div class="col-md-6">
+        <input type="text" id="surname" class="form-control" placeholder="Surname">
+      </div>
+
+      <div class="col-md-6">
+        <input type="email" id="email" class="form-control" placeholder="Email">
+      </div>
+
+      <div class="col-md-6">
+        <input type="text" id="phone" class="form-control" placeholder="Phone">
+      </div>
+
+      <div class="col-md-12">
+        <input type="text" id="address" class="form-control" placeholder="Address">
+      </div>
+
+      <div class="col-md-4">
+        <label>Service (1–10)</label>
+        <input type="number" id="rating1" class="form-control" min="1" max="10">
+      </div>
+
+      <div class="col-md-4">
+        <label>Support (1–10)</label>
+        <input type="number" id="rating2" class="form-control" min="1" max="10">
+      </div>
+
+      <div class="col-md-4">
+        <label>Website (1–10)</label>
+        <input type="number" id="rating3" class="form-control" min="1" max="10">
+      </div>
+
+      <div class="col-md-12 text-center">
+        <button type="submit" class="btn btn-primary mt-3">
+          Submit
+        </button>
+      </div>
+
+    </form>
+
+    <!-- RESULT MESSAGE -->
+    <div id="form-results" class="mt-4 text-center fw-bold"></div>
 
   </div>
 </section>
 
 </main>
 
-<!-- ===== FOOTER ===== -->
+<!-- ================= FOOTER ================= -->
 <footer class="footer text-center">
   <p>© 2025 <strong>Rahul Dalal</strong></p>
 </footer>
 
-<!-- JS -->
+<!-- ================= JS ================= -->
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/main.js"></script>
 <script src="assets/js/custom.js"></script>
 
 </body>
