@@ -301,3 +301,52 @@ table tbody tr:hover {
     transition: none !important;
   }
 }
+/* ============================================================
+   LAB 3 OPTIONAL – ORDERED + NESTED LIST WITH COUNTERS
+   Author: Rahul Dalal
+   ============================================================ */
+
+ol.custom-counter {
+  counter-reset: section;
+  list-style: none;
+  padding-left: 0;
+}
+
+ol.custom-counter > li {
+  counter-increment: section;
+  margin-bottom: 12px;
+  padding-left: 40px;
+  position: relative;
+  font-weight: 600;
+}
+
+ol.custom-counter > li::before {
+  content: counter(section) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0066ff;
+  font-weight: 700;
+}
+
+/* NESTED LIST */
+ol.custom-counter li ol {
+  counter-reset: subsection;
+  margin-top: 8px;
+}
+
+ol.custom-counter li ol li {
+  counter-increment: subsection;
+  padding-left: 32px;
+  position: relative;
+  font-weight: 500;
+}
+
+ol.custom-counter li ol li::before {
+  content: counter(section) "." counter(subsection);
+  position: absolute;
+  left: 0;
+  color: #4CAF50;
+  font-size: 0.9rem;
+}
+
